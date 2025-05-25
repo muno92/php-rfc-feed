@@ -3,22 +3,22 @@
 namespace App\RfcFetcher;
 
 use App\RfcFetcher\Entity\Link;
-use Symfony\Component\DomCrawler\Crawler as DomCrawler;
+use Symfony\Component\DomCrawler\Crawler;
 
-final class Crawler
+final class LinkExtractor
 {
     /**
      * @param string $html
      * @return list<Link>
      */
-    public function crawl(string $html): array
+    public function extract(string $html): array
     {
-        $crawler = new DomCrawler($html);
+        $crawler = new Crawler($html);
 
         $canonicalLink = $crawler->filter('link[rel="canonical"]')->attr('href');
         $host = 'https://' . parse_url($canonicalLink, PHP_URL_HOST);
 
-        $converter = function (DomCrawler $node) use ($host): Link {
+        $converter = function (Crawler $node) use ($host): Link {
             $title = $node->text();
             $url = $host . $node->attr('href');
 
