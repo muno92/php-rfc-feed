@@ -25,5 +25,17 @@ class CrawlerTest extends TestCase
         yield 'In voting phase' => [
             new Link('Pipe operator', 'https://wiki.php.net/rfc/pipe-operator-v3'),
         ];
+        yield 'Under discussion' => [
+            new Link('Clone with v2', 'https://wiki.php.net/rfc/clone_with_v2'),
+        ];
+        yield 'In Draft' => [
+            new Link('Make OPcache a non-optional part of PHP', 'https://wiki.php.net/rfc/make_opcache_required'),
+        ];
+        yield 'In Draft (nested)' => [
+            new Link("Pattern matching ''is'' keyword", 'https://wiki.php.net/rfc/pattern-matching'),
+        ];
+        yield 'Accepted (Process and Policy)' => [
+            new Link('Consolidate Coding Standards Policy Document', 'https://wiki.php.net/rfc/consolidate-coding-standard-policy-document'),
+        ];
     }
 }

@@ -15,13 +15,17 @@ final class Crawler
     {
         $crawler = new DomCrawler($html);
 
-        $votings = $crawler->filter('#in_voting_phase + div a')->each(function (DomCrawler $node) {
+        $converter = function (DomCrawler $node) {
             $title = $node->text();
             $url = 'https://wiki.php.net' . $node->attr('href');
 
             return new Link($title, $url);
-        });
+        };
+        $votingRfcs = $crawler->filter('#in_voting_phase + div a')->each($converter);
+        $underDiscussionRfcs = $crawler->filter('#under_discussion + div a')->each($converter);
+        $draftRfcs = $crawler->filter('#in_draft + div a')->each($converter);
+        $processAndPolicyRfcs = $crawler->filter('#process_and_policy + div a')->each($converter);
 
-        return $votings;
+        return [...$votingRfcs, ...$underDiscussionRfcs, ...$draftRfcs, ...$processAndPolicyRfcs];
     }
 }
