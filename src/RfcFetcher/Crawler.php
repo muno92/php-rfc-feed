@@ -15,9 +15,12 @@ final class Crawler
     {
         $crawler = new DomCrawler($html);
 
-        $converter = function (DomCrawler $node) {
+        $canonicalLink = $crawler->filter('link[rel="canonical"]')->attr('href');
+        $host = 'https://' . parse_url($canonicalLink, PHP_URL_HOST);
+
+        $converter = function (DomCrawler $node) use ($host): Link {
             $title = $node->text();
-            $url = 'https://wiki.php.net' . $node->attr('href');
+            $url = $host . $node->attr('href');
 
             return new Link($title, $url);
         };
