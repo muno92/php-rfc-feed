@@ -17,7 +17,7 @@ class CrawlerTest extends TestCase
         $crawler = new Crawler();
         $rfcList = $crawler->crawl(file_get_contents(__DIR__ . '/../fixtures/rfc.html'));
 
-        $this->assertContains($expected, $rfcList);
+        $this->assertContainsEquals($expected, $rfcList);
     }
 
     public static function crawlProvider(): Generator
