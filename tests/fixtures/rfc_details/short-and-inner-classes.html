@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>PHP: rfc:short-and-inner-classes</title>
+
+  <meta name="generator" content="DokuWiki"/>
+<meta name="robots" content="index,follow"/>
+<meta name="keywords" content="rfc,short-and-inner-classes"/>
+<link rel="search" type="application/opensearchdescription+xml" href="/lib/exe/opensearch.php" title="PHP Wiki"/>
+<link rel="start" href="/"/>
+<link rel="contents" href="/rfc/short-and-inner-classes?do=index" title="Sitemap"/>
+<link rel="manifest" href="/lib/exe/manifest.php"/>
+<link rel="alternate" type="application/rss+xml" title="Recent Changes" href="/feed.php"/>
+<link rel="alternate" type="application/rss+xml" title="Current namespace" href="/feed.php?mode=list&amp;ns=rfc"/>
+<link rel="alternate" type="text/html" title="Plain HTML" href="/_export/xhtml/rfc/short-and-inner-classes"/>
+<link rel="alternate" type="text/plain" title="Wiki Markup" href="/_export/raw/rfc/short-and-inner-classes"/>
+<link rel="canonical" href="https://wiki.php.net/rfc/short-and-inner-classes"/>
+<link rel="stylesheet" href="/lib/exe/css.php?t=phpnet&amp;tseed=7bd2b78bb5550d8ceb3c825c96dd22d0"/>
+<!--[if gte IE 9]><!-->
+<script >/*<![CDATA[*/var NS='rfc';var JSINFO = {"id":"rfc:short-and-inner-classes","namespace":"rfc","ACT":"show","useHeadingNavigation":0,"useHeadingContent":0};
+/*!]]>*/</script>
+<script src="/lib/exe/jquery.php?tseed=f0349b609f9b91a485af8fd8ecd4aea4" defer="defer">/*<![CDATA[*/
+/*!]]>*/</script>
+<script src="/lib/exe/js.php?t=phpnet&amp;tseed=7bd2b78bb5550d8ceb3c825c96dd22d0" defer="defer">/*<![CDATA[*/
+/*!]]>*/</script>
+<!--<![endif]-->
+  <link media='all' rel='stylesheet' href='//shared.php.net/styles/defaults.css?filemtime=1732659606'/>
+  <link media='all' rel='stylesheet' href='//shared.php.net/styles/wiki.css?filemtime=1707322306'/>
+
+  <link href="//fonts.googleapis.com/css?family=Fira+Sans|Source+Sans+Pro:300,400,600,400italic,600italic|Source+Code+Pro&amp;subset=latin,latin-ext" rel="stylesheet">
+  <link rel="shortcut icon" href="//php.net/favicon.ico">
+<!--[if lt IE 9]>
+  <script src="//shared.php.net/js/html5shiv.js"></script>
+<![endif]-->
+  </head>
+<body id="">
+
+<div class="wrap">
+<header class='clearfix'>
+  <div id="mainmenu-toggle-overlay"></div>
+  <input type="checkbox" id="mainmenu-toggle">
+  <nav class="fullscreen">
+    <div class="mainscreen">
+      <a href="/" class="home"><img src="//php.net/images/logo.php?" width="48" height="24" alt="php"><span class="subdomain"></span></a>
+      <ul>
+        <li class=""><a href="?do=login">Login</a></li>
+        <li class=""><a href="?do=register">Register</a></li>
+      </ul>
+    </div>
+    <div class="secondscreen">
+      <form method="get" action="/start">
+        <input type="search" placeholder="Search" name="id" class="search">
+        <input type="hidden" name="do" value="search">
+      </form>
+    </div>
+  </nav>
+</header>
+<div id="flash-message"></div>
+<nav id="megadropdown"></nav>
+
+<section class="fullscreen clearfix">
+
+
+<section id="breadcrumbs">
+<nav>
+<span class="bchead">You are here: </span><span class="home"><bdi><a href="/start" class="wikilink1" title="start" data-wiki-id="start">start</a></bdi></span> › <bdi><a href="/rfc" class="wikilink1" title="rfc" data-wiki-id="rfc">rfc</a></bdi> › <bdi><a href="/rfc/short-and-inner-classes" class="wikilink1" title="rfc:short-and-inner-classes" data-wiki-id="rfc:short-and-inner-classes">short-and-inner-classes</a></bdi></nav>
+</section>
+<section class="mainscreen">
+    <!--[if lte IE 7 ]><div id="IE7"><![endif]--><!--[if IE 8 ]><div id="IE8"><![endif]-->
+    <div id="dokuwiki__site"><div id="dokuwiki__top" class="site dokuwiki mode_show tpl_phpnet     ">
+
+
+        <div class="wrapper group">
+
+            
+            <!-- ********** CONTENT ********** -->
+            <div id="dokuwiki__content"><div class="pad group">
+
+                <div class="pageId"><span>rfc:short-and-inner-classes</span></div>
+
+                <div class="page group">
+                                                            <!-- wikipage start -->
+                                        
+<h1 class="sectionedit1" id="php_rfcnested_classes">PHP RFC: Nested Classes</h1>
+<div class="level1">
+<ul>
+<li class="level1"><div class="li"> Version: 0.5</div>
+</li>
+<li class="level1"><div class="li"> Date: 2025-02-08</div>
+</li>
+<li class="level1"><div class="li"> Author: Rob Landers, <a href="mailto:&#114;&#111;&#98;&#64;&#98;&#111;&#116;&#116;&#108;&#101;&#100;&#46;&#99;&#111;&#100;&#101;&#115;" class="mail" title="&#114;&#111;&#98;&#64;&#98;&#111;&#116;&#116;&#108;&#101;&#100;&#46;&#99;&#111;&#100;&#101;&#115;">&#114;&#111;&#98;&#64;&#98;&#111;&#116;&#116;&#108;&#101;&#100;&#46;&#99;&#111;&#100;&#101;&#115;</a></div>
+</li>
+<li class="level1"><div class="li"> Status: Declined</div>
+</li>
+<li class="level1"><div class="li"> First Published at: <a href="http://wiki.php.net/rfc/short-and-inner-classes" class="urlextern" title="http://wiki.php.net/rfc/short-and-inner-classes" rel="ugc nofollow">http://wiki.php.net/rfc/short-and-inner-classes</a></div>
+</li>
+</ul>
+
+</div>
+
+<h2 class="sectionedit2" id="introduction">Introduction</h2>
+<div class="level2">
+
+<p>
+Nested classes allow the definition of one class within another, enabling tighter encapsulation and better organization of related logic. This feature naturally supports common design patterns such as Builders, DTOs, and serialization helpers, reducing boilerplate, minimizing namespace clutter, and clarifying code structure. Unlike some other languages, PHP nested classes do not implicitly capture the outer class instance, preserving explicit data flow and minimizing hidden coupling.
+</p>
+
+</div>
+
+<h2 class="sectionedit3" id="proposal">Proposal</h2>
+<div class="level2">
+
+<p>
+Nested classes allow defining classes (including enums) within other classes, interfaces, or enums, following standard visibility rules. This allows developers to declare a class as <code>private</code> or <code>protected</code> and restrict its usage to an outer class.
+</p>
+<pre class="code php"><span class="kw2">class</span> Outer <span class="br0">&#123;</span>
+    <span class="kw2">public</span> <span class="kw2">class</span> Inner <span class="br0">&#123;</span>
+        <span class="kw2">public</span> <span class="kw2">function</span> __construct<span class="br0">&#40;</span><span class="kw2">public</span> string <span class="re0">$message</span><span class="br0">&#41;</span> <span class="br0">&#123;</span><span class="br0">&#125;</span>
+    <span class="br0">&#125;</span>
+&nbsp;
+    <span class="kw2">private</span> <span class="kw2">class</span> PrivateInner <span class="br0">&#123;</span>
+        <span class="kw2">public</span> <span class="kw2">function</span> __construct<span class="br0">&#40;</span><span class="kw2">public</span> string <span class="re0">$message</span><span class="br0">&#41;</span> <span class="br0">&#123;</span><span class="br0">&#125;</span>
+    <span class="br0">&#125;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="re0">$foo</span> <span class="sy0">=</span> <span class="kw2">new</span> Outer\Inner<span class="br0">&#40;</span><span class="st_h">'Hello, world!'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="kw1">echo</span> <span class="re0">$foo</span><span class="sy0">-&gt;</span><span class="me1">message</span><span class="sy0">;</span>
+<span class="co1">// outputs: Hello, world!</span>
+<span class="re0">$baz</span> <span class="sy0">=</span> <span class="kw2">new</span> Outer\PrivateInner<span class="br0">&#40;</span><span class="st_h">'Hello, world!'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="co1">// Uncaught TypeError: Cannot instantiate class Outer\PrivateInner from the global scope</span></pre>
+
+<p>
+Nested classes are just regular class definitions with visibility. That means, except where otherwise noted, “how would nested classes work in situation X?” can be answered with “the same as any other class/object.”
+</p>
+
+</div>
+
+<h3 class="sectionedit4" id="use-cases_and_examples">Use-cases and examples</h3>
+<div class="level3">
+
+<p>
+Nested classes are a powerful tool for organizing code and encapsulating functionality. Some use-cases include:
+</p>
+<ul>
+<li class="level1"><div class="li"> <strong>Builder patterns</strong>: Nested classes can be used to create complex objects step-by-step, encapsulating the construction logic within the outer class.</div>
+</li>
+<li class="level1"><div class="li"> <strong>Data Transfer Objects (DTOs)</strong>: Nested classes can be used to define data structures that are closely related to the outer class, improving code organization and readability.</div>
+</li>
+<li class="level1"><div class="li"> <strong>Serialization helpers</strong>: Nested classes can be used to define custom serialization logic for the outer class, encapsulating the serialization details within the outer class.</div>
+</li>
+<li class="level1"><div class="li"> <strong>Encapsulation</strong>: Nested classes can be used to encapsulate functionality that is only relevant to the outer class, reducing the visibility of the nested class and improving code organization.</div>
+</li>
+<li class="level1"><div class="li"> <strong>Namespace management</strong>: Nested classes can help reduce the number of top-level classes in a namespace, improving code organization and reducing clutter.</div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="exampleserialization_dtos">Example: Serialization DTOs</h4>
+<div class="level4">
+<pre class="code php"><span class="kw2">class</span> Message <span class="br0">&#123;</span>
+    <span class="kw2">public</span> <span class="kw2">function</span> __construct<span class="br0">&#40;</span><span class="kw2">private</span> string <span class="re0">$message</span><span class="sy0">,</span> <span class="kw2">private</span> string <span class="re0">$from</span><span class="sy0">,</span> <span class="kw2">private</span> string <span class="re0">$to</span><span class="br0">&#41;</span> <span class="br0">&#123;</span><span class="br0">&#125;</span>
+&nbsp;
+    <span class="kw2">public</span> <span class="kw2">function</span> <a href="http://www.php.net/serialize"><span class="kw3">Serialize</span></a><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">:</span> string <span class="br0">&#123;</span>
+        <span class="kw1">return</span> <a href="http://www.php.net/serialize"><span class="kw3">serialize</span></a><span class="br0">&#40;</span><span class="kw2">new</span> SerializedMessage<span class="br0">&#40;</span><span class="re0">$this</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+&nbsp;
+    <span class="kw2">private</span> <span class="kw2">class</span> SerializedMessage <span class="br0">&#123;</span>
+        <span class="kw2">public</span> string <span class="re0">$message</span><span class="sy0">;</span>
+        <span class="kw2">public</span> string <span class="re0">$from</span><span class="sy0">;</span>
+        <span class="kw2">public</span> string <span class="re0">$to</span><span class="sy0">;</span>
+&nbsp;
+        <span class="kw2">public</span> <span class="kw2">function</span> __construct<span class="br0">&#40;</span>Message <span class="re0">$message</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+            <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">message</span> <span class="sy0">=</span> <span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">message</span><span class="sy0">;</span>
+            <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">from</span> <span class="sy0">=</span> <span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">from</span><span class="sy0">;</span>
+            <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">to</span> <span class="sy0">=</span> <span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">to</span><span class="sy0">;</span>
+        <span class="br0">&#125;</span>
+    <span class="br0">&#125;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="kw2">new</span> Message<span class="br0">&#40;</span><span class="st_h">'Hello, world!'</span><span class="sy0">,</span> <span class="st_h">'Alice'</span><span class="sy0">,</span> <span class="st_h">'Bob'</span><span class="br0">&#41;</span><span class="sy0">-&gt;</span><a href="http://www.php.net/serialize"><span class="kw3">Serialize</span></a><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+
+</div>
+
+<h4 id="examplebuilder_pattern">Example: Builder Pattern</h4>
+<div class="level4">
+<pre class="code php"><span class="kw2">class</span> Person <span class="br0">&#123;</span>
+    <span class="kw2">public</span> <span class="kw2">class</span> Builder <span class="br0">&#123;</span>
+        <span class="kw2">use</span> AgeCalculator<span class="sy0">;</span>
+&nbsp;
+        <span class="kw2">private</span> string <span class="re0">$name</span><span class="sy0">;</span>
+        <span class="kw2">private</span> DateTimeInterface <span class="re0">$age</span><span class="sy0">;</span>
+&nbsp;
+        <span class="kw2">public</span> <span class="kw2">function</span> setName<span class="br0">&#40;</span>string <span class="re0">$name</span><span class="br0">&#41;</span><span class="sy0">:</span> <span class="kw2">self</span> <span class="br0">&#123;</span>
+            <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">name</span> <span class="sy0">=</span> <span class="re0">$name</span><span class="sy0">;</span>
+            <span class="kw1">return</span> <span class="re0">$this</span><span class="sy0">;</span>
+        <span class="br0">&#125;</span>
+&nbsp;
+        <span class="kw2">public</span> <span class="kw2">function</span> setBirthday<span class="br0">&#40;</span>DateTimeInterface <span class="re0">$age</span><span class="br0">&#41;</span><span class="sy0">:</span> <span class="kw2">self</span> <span class="br0">&#123;</span>
+            <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">age</span> <span class="sy0">=</span> <span class="re0">$age</span><span class="sy0">;</span>
+            <span class="kw1">return</span> <span class="re0">$this</span><span class="sy0">;</span>
+        <span class="br0">&#125;</span>
+&nbsp;
+        <span class="kw2">public</span> <span class="kw2">function</span> build<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">:</span> Person <span class="br0">&#123;</span>
+            <span class="kw1">return</span> <span class="kw2">new</span> Person<span class="br0">&#40;</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">name</span><span class="sy0">,</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">calculateAge</span><span class="br0">&#40;</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">age</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+        <span class="br0">&#125;</span>
+    <span class="br0">&#125;</span>
+&nbsp;
+    <span class="kw2">public</span> <span class="kw2">function</span> __construct<span class="br0">&#40;</span><span class="kw2">private</span> string <span class="re0">$name</span><span class="sy0">,</span> <span class="kw2">private</span> int <span class="re0">$age</span><span class="br0">&#41;</span> <span class="br0">&#123;</span><span class="br0">&#125;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="kw2">new</span> Person\Builder<span class="br0">&#40;</span><span class="br0">&#41;</span>
+    <span class="sy0">-&gt;</span><span class="me1">setName</span><span class="br0">&#40;</span><span class="st_h">'Alice'</span><span class="br0">&#41;</span>
+    <span class="sy0">-&gt;</span><span class="me1">setBirthday</span><span class="br0">&#40;</span><span class="kw2">new</span> DateTime<span class="br0">&#40;</span><span class="st_h">'2000-01-01'</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+    <span class="sy0">-&gt;</span><span class="me1">build</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+
+</div>
+
+<h4 id="exampledtos">Example: DTOs</h4>
+<div class="level4">
+<pre class="code php">enum Status <span class="br0">&#123;</span>
+    <span class="kw1">case</span> Active<span class="sy0">;</span>
+    <span class="kw1">case</span> Inactive<span class="sy0">;</span>
+&nbsp;
+    <span class="kw2">private</span> enum Processing <span class="br0">&#123;</span>
+        <span class="kw1">case</span> Pending<span class="sy0">;</span>
+        <span class="kw1">case</span> Completed<span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+&nbsp;
+    <span class="kw2">public</span> <span class="kw2">class</span> Message <span class="br0">&#123;</span>
+&nbsp;
+        <span class="kw2">private</span> Processing <span class="re0">$processing</span> <span class="sy0">=</span> Processing<span class="sy0">::</span><span class="me2">Pending</span><span class="sy0">;</span>
+&nbsp;
+        <span class="kw2">public</span> <span class="kw2">function</span> __construct<span class="br0">&#40;</span><span class="kw2">private</span> Status <span class="re0">$status</span><span class="br0">&#41;</span> <span class="br0">&#123;</span><span class="br0">&#125;</span>
+&nbsp;
+        <span class="kw2">public</span> <span class="kw2">function</span> getMessage<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">:</span> string <span class="br0">&#123;</span>
+            <span class="kw1">return</span> match <span class="br0">&#40;</span><span class="br0">&#91;</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">status</span><span class="sy0">,</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">processing</span><span class="br0">&#93;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+                <span class="br0">&#91;</span>Status<span class="sy0">::</span><span class="me2">Active</span><span class="sy0">,</span> Processing<span class="sy0">::</span><span class="me2">Pending</span><span class="br0">&#93;</span> <span class="sy0">=&gt;</span> <span class="st0">&quot;Active and Pending&quot;</span><span class="sy0">,</span>
+                <span class="br0">&#91;</span>Status<span class="sy0">::</span><span class="me2">Active</span><span class="sy0">,</span> Processing<span class="sy0">::</span><span class="me2">Completed</span><span class="br0">&#93;</span> <span class="sy0">=&gt;</span> <span class="st0">&quot;Active and Completed&quot;</span><span class="sy0">,</span>
+                <span class="br0">&#91;</span>Status<span class="sy0">::</span><span class="me2">Inactive</span><span class="sy0">,</span> Processing<span class="sy0">::</span><span class="me2">Pending</span><span class="br0">&#93;</span> <span class="sy0">=&gt;</span> <span class="st0">&quot;Inactive and Pending&quot;</span><span class="sy0">,</span>
+                <span class="br0">&#91;</span>Status<span class="sy0">::</span><span class="me2">Inactive</span><span class="sy0">,</span> Processing<span class="sy0">::</span><span class="me2">Completed</span><span class="br0">&#93;</span> <span class="sy0">=&gt;</span> <span class="kw1">throw</span> <span class="kw2">new</span> LogicException<span class="br0">&#40;</span><span class="st_h">'should not happen'</span><span class="br0">&#41;</span><span class="sy0">,</span>
+            <span class="br0">&#125;</span><span class="sy0">;</span>
+        <span class="br0">&#125;</span>
+    <span class="br0">&#125;</span>
+&nbsp;
+    <span class="kw2">public</span> <span class="kw2">function</span> createMessage<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">:</span> Message <span class="br0">&#123;</span>
+        <span class="kw1">return</span> <span class="kw2">new</span> Message<span class="br0">&#40;</span><span class="re0">$this</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+Status<span class="sy0">::</span><span class="me2">Active</span><span class="sy0">-&gt;</span><span class="me1">createMessage</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">-&gt;</span><span class="me1">getMessage</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">// &quot;Active and Pending&quot;</span></pre>
+
+</div>
+
+<h4 id="exampleclass_shared_via_interface">Example: class shared via interface</h4>
+<div class="level4">
+<pre class="code php"><span class="kw2">interface</span> Reader <span class="br0">&#123;</span>
+    <span class="kw2">public</span> <span class="kw2">class</span> Buffer <span class="br0">&#123;</span>
+        <span class="kw2">public</span> string <span class="re0">$bytes</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+&nbsp;
+    <span class="kw2">public</span> <span class="kw2">function</span> read<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">:</span> void<span class="sy0">;</span>
+    <span class="kw2">public</span> <span class="kw2">function</span> getBuffer<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">:</span> Buffer<span class="sy0">;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="co1">// in another file:</span>
+<span class="kw2">use</span> Reader\Buffer<span class="sy0">;</span>
+&nbsp;
+<span class="kw2">class</span> FileReader <span class="kw2">implements</span> Reader <span class="br0">&#123;</span>
+    <span class="kw2">protected</span> Buffer <span class="re0">$buffer</span><span class="sy0">;</span>
+&nbsp;
+    <span class="kw2">public</span> <span class="kw2">function</span> __construct<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">buffer</span> <span class="sy0">=</span> <span class="kw2">new</span> Buffer<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+&nbsp;
+    <span class="kw2">public</span> <span class="kw2">function</span> read<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">:</span> void <span class="br0">&#123;</span>
+        <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">buffer</span><span class="sy0">-&gt;</span><span class="me1">bytes</span> <span class="sy0">=</span> random_bytes<span class="br0">&#40;</span><span class="nu0">5</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+&nbsp;
+    <span class="kw2">public</span> <span class="kw2">function</span> getBuffer<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">:</span> Buffer <span class="br0">&#123;</span>
+        <span class="kw1">return</span> <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">buffer</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="kw2">new</span> FileReader<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">-&gt;</span><span class="me1">getBuffer</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">// returns a Reader\Buffer object</span></pre>
+
+</div>
+
+<h4 id="examplefactory_pattern">Example: Factory Pattern</h4>
+<div class="level4">
+<pre class="code php"><span class="kw2">class</span> Triangle <span class="kw2">extends</span> Polygon <span class="br0">&#123;</span>
+    <span class="kw2">public</span> final <span class="kw2">class</span> fromPoints <span class="kw2">extends</span> Triangle <span class="br0">&#123;</span>
+        <span class="kw2">public</span> <span class="kw2">function</span> __construct<span class="br0">&#40;</span>Point <span class="re0">$point1</span><span class="sy0">,</span> Point <span class="re0">$point2</span><span class="sy0">,</span> Point <span class="re0">$point3</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+            <span class="co1">// ...</span>
+        <span class="br0">&#125;</span>
+    <span class="br0">&#125;</span>
+&nbsp;
+    <span class="kw2">public</span> final <span class="kw2">class</span> fromSides <span class="kw2">extends</span> Triangle <span class="br0">&#123;</span>
+        <span class="kw2">public</span> <span class="kw2">function</span> __construct<span class="br0">&#40;</span>float <span class="re0">$side1</span><span class="sy0">,</span> float <span class="re0">$side2</span><span class="sy0">,</span> float <span class="re0">$side3</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+            <span class="co1">// ...</span>
+        <span class="br0">&#125;</span>
+    <span class="br0">&#125;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="kw2">new</span> Triangle\fromPoints<span class="br0">&#40;</span><span class="kw2">new</span> Point<span class="br0">&#40;</span><span class="nu0">0</span><span class="sy0">,</span> <span class="nu0">0</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="kw2">new</span> Point<span class="br0">&#40;</span><span class="nu0">1</span><span class="sy0">,</span> <span class="nu0">0</span><span class="br0">&#41;</span><span class="sy0">,</span> <span class="kw2">new</span> Point<span class="br0">&#40;</span><span class="nu0">0</span><span class="sy0">,</span> <span class="nu0">1</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+
+</div>
+
+<h3 class="sectionedit5" id="why_php_needs_nested_classes">Why PHP needs nested classes</h3>
+<div class="level3">
+
+<p>
+PHP developers today often simulate nested classes through long namespace chains or anonymous classes embedded in methods. While these patterns work, they come with visibility challenges, verbosity, and a lack of cohesion between related types. Nested classes solve these problems natively, offering better encapsulation without requiring new runtime behavior or complex inheritance tricks.
+</p>
+
+</div>
+
+<h3 class="sectionedit6" id="declaration_syntax">Declaration Syntax</h3>
+<div class="level3">
+
+<p>
+Declaring a nested class uses the same syntax as declaring a top-level class. You can define <code>readonly</code>, <code>final</code>, and <code>abstract</code> nested classes. In addition, nested classes may be declared with visibility modifiers (<code>private</code>, <code>protected</code>, <code>public</code>), which determine where the nested class can be referenced or instantiated.
+</p>
+
+<p>
+If a nested class does not explicitly declare visibility (private, protected, or public), it is implicitly considered public. This matches PHP’s existing class behavior for methods and properties.
+</p>
+<pre class="code php"><span class="kw2">class</span> Outer <span class="br0">&#123;</span>
+    <span class="kw2">private</span> <span class="kw2">class</span> Inner <span class="br0">&#123;</span><span class="br0">&#125;</span>
+    <span class="kw2">protected</span> readonly <span class="kw2">class</span> ReadOnlyInner <span class="br0">&#123;</span><span class="br0">&#125;</span>
+    <span class="kw2">public</span> <span class="kw2">abstract</span> <span class="kw2">class</span> AbstractInner <span class="br0">&#123;</span><span class="br0">&#125;</span>
+    <span class="kw2">public</span> final <span class="kw2">class</span> FinalInner <span class="br0">&#123;</span><span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre>
+
+<p>
+Outer classes remain “public” (accessible and visible to all), and visibility modifiers cannot be applied to them.
+</p>
+
+</div>
+
+<h3 class="sectionedit7" id="visibility">Visibility</h3>
+<div class="level3">
+
+<p>
+Visibility refers to whether a method, class, or property is accessible from outside its defining context. A nested class may be declared as <code>private</code>, <code>protected</code>, or <code>public</code>. A private class will <em>only</em> be visible within the lexical outer class, while a protected class is visible both inside its lexical scope and any child classes. A public class has no restrictions and will be visible from anywhere in the codebase.
+</p>
+
+</div>
+
+<h4 id="properties_and_methods">Properties and Methods</h4>
+<div class="level4">
+
+<p>
+All outer class’s properties and methods are visible from nested classes, as from the perspective of the nested class, it is a member of the outer class. However, unlike some languages with nested classes, an outer class does not have direct access to a nested class’s private or protected members.
+</p>
+
+</div>
+
+<h4 id="method_return_type_and_argument_declarations">Method return type and argument declarations</h4>
+<div class="level4">
+
+<p>
+Nested classes may only be used as a return type, property type, or argument type declarations for members that have the same visibility or less. Thus returning a <code>protected</code> type from a <code>public</code> method is not allowed, but is allowed from a <code>protected</code> or <code>private</code> method.
+</p>
+<div class="table sectionedit8"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0">Inner Class Visibility</th><th class="col1">Method Visibility</th><th class="col2">Allowed</th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0 leftalign"><code>public</code>        </td><td class="col1 leftalign"><code>public</code>   </td><td class="col2 leftalign">Yes    </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0 leftalign"><code>public</code>        </td><td class="col1"><code>protected</code></td><td class="col2 leftalign">Yes    </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0 leftalign"><code>public</code>        </td><td class="col1 leftalign"><code>private</code>  </td><td class="col2 leftalign">Yes    </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0 leftalign"><code>protected</code>     </td><td class="col1 leftalign"><code>public</code>   </td><td class="col2 leftalign">No     </td>
+	</tr>
+	<tr class="row5">
+		<td class="col0 leftalign"><code>protected</code>     </td><td class="col1"><code>protected</code></td><td class="col2 leftalign">Yes    </td>
+	</tr>
+	<tr class="row6">
+		<td class="col0 leftalign"><code>protected</code>     </td><td class="col1 leftalign"><code>private</code>  </td><td class="col2 leftalign">Yes    </td>
+	</tr>
+	<tr class="row7">
+		<td class="col0 leftalign"><code>private</code>       </td><td class="col1 leftalign"><code>public</code>   </td><td class="col2 leftalign">No     </td>
+	</tr>
+	<tr class="row8">
+		<td class="col0 leftalign"><code>private</code>       </td><td class="col1"><code>protected</code></td><td class="col2 leftalign">No     </td>
+	</tr>
+	<tr class="row9">
+		<td class="col0 leftalign"><code>private</code>       </td><td class="col1 leftalign"><code>private</code>  </td><td class="col2 leftalign">Yes    </td>
+	</tr>
+</table></div>
+
+<p>
+Attempting to declare a return of a non-visible type will result in a <code>TypeError</code>:
+</p>
+<pre class="code php"><span class="kw2">class</span> Outer <span class="br0">&#123;</span>
+    <span class="kw2">private</span> <span class="kw2">class</span> Inner <span class="br0">&#123;</span><span class="br0">&#125;</span>
+&nbsp;
+    <span class="kw2">public</span> <span class="kw2">function</span> getInner<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">:</span> Inner <span class="br0">&#123;</span>
+        <span class="kw1">return</span> <span class="kw2">new</span> Inner<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="co1">// Fatal error: Uncaught TypeError: Public method getInner cannot return private class Outer\Inner</span>
+<span class="kw2">new</span> Outer<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">-&gt;</span><span class="me1">getInner</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+
+<p>
+This does not prevent the programmer from returning a hidden type, only from declaring it. The programmer may choose to use an interface or public type instead:
+</p>
+<pre class="code php"><span class="kw2">interface</span> FooBar <span class="br0">&#123;</span><span class="br0">&#125;</span>
+&nbsp;
+<span class="kw2">class</span> Outer <span class="br0">&#123;</span>
+    <span class="kw2">private</span> <span class="kw2">class</span> Inner <span class="kw2">implements</span> FooBar <span class="br0">&#123;</span><span class="br0">&#125;</span>
+&nbsp;
+    <span class="kw2">public</span> <span class="kw2">function</span> getInner<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">:</span> FooBar <span class="br0">&#123;</span>
+        <span class="kw1">return</span> <span class="kw2">new</span> Inner<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre>
+
+</div>
+
+<h4 id="properties">Properties</h4>
+<div class="level4">
+
+<p>
+The visibility of a type declaration on a property must also not increase the visibility of a nested class. Thus, a public property cannot declare a private type.
+</p>
+<pre class="code php"><span class="kw2">class</span> Outer <span class="br0">&#123;</span>
+    <span class="kw2">private</span> <span class="kw2">class</span> Inner <span class="kw2">implements</span> FooBar <span class="br0">&#123;</span><span class="br0">&#125;</span>
+&nbsp;
+    <span class="kw2">public</span> <span class="kw2">function</span> getInner<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">:</span> FooBar <span class="br0">&#123;</span>
+        <span class="kw1">return</span> <span class="kw2">new</span> Inner<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">// not an error</span>
+    <span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre>
+
+</div>
+
+<h3 class="sectionedit9" id="accessing_outer_classes">Accessing outer classes</h3>
+<div class="level3">
+
+<p>
+Nested classes do not implicitly have access to an outer class instance. This design choice avoids implicit coupling between classes and keeps nested classes simpler, facilitating potential future extensions (such as adding an explicit outer keyword) without backward compatibility issues.
+</p>
+
+<p>
+However, a programmer may pass an instance of an outer class (or another nested class) to a nested class. If a class has access to the outer class, it may use the outer class’s private, protected, and public properties and methods.
+</p>
+<pre class="code php"><span class="kw2">class</span> Message <span class="br0">&#123;</span>
+    <span class="kw2">public</span> <span class="kw2">function</span> __construct<span class="br0">&#40;</span><span class="kw2">private</span> string <span class="re0">$message</span><span class="sy0">,</span> <span class="kw2">private</span> string <span class="re0">$from</span><span class="sy0">,</span> <span class="kw2">private</span> string <span class="re0">$to</span><span class="br0">&#41;</span> <span class="br0">&#123;</span><span class="br0">&#125;</span>
+&nbsp;
+    <span class="kw2">public</span> <span class="kw2">function</span> <a href="http://www.php.net/serialize"><span class="kw3">Serialize</span></a><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">:</span> string <span class="br0">&#123;</span>
+        <span class="kw1">return</span> <span class="kw2">new</span> SerializedMessage<span class="br0">&#40;</span><span class="re0">$this</span><span class="br0">&#41;</span><span class="sy0">-&gt;</span><span class="me1">message</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+&nbsp;
+    <span class="kw2">private</span> <span class="kw2">class</span> SerializedMessage <span class="br0">&#123;</span>
+        <span class="kw2">public</span> string <span class="re0">$message</span><span class="sy0">;</span>
+&nbsp;
+        <span class="kw2">public</span> <span class="kw2">function</span> __construct<span class="br0">&#40;</span>Message <span class="re0">$message</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+            <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">message</span> <span class="sy0">=</span> <a href="http://www.php.net/strlen"><span class="kw3">strlen</span></a><span class="br0">&#40;</span><span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">from</span><span class="br0">&#41;</span> <span class="sy0">.</span> <span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">from</span> <span class="sy0">.</span> <a href="http://www.php.net/strlen"><span class="kw3">strlen</span></a><span class="br0">&#40;</span><span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">to</span><span class="br0">&#41;</span> <span class="sy0">.</span> <span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">to</span> <span class="sy0">.</span> <a href="http://www.php.net/strlen"><span class="kw3">strlen</span></a><span class="br0">&#40;</span><span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">message</span><span class="br0">&#41;</span> <span class="sy0">.</span> <span class="re0">$message</span><span class="sy0">-&gt;</span><span class="me1">message</span><span class="sy0">;</span>
+        <span class="br0">&#125;</span>
+    <span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre>
+
+</div>
+
+<h3 class="sectionedit10" id="resolution">Resolution</h3>
+<div class="level3">
+
+<p>
+From a resolution perspective, outer classes behave as a pseudo-namespace. Using a short name of a nested class will resolve to the nested class. To disambiguate between different classes with the same name in the namespace and the nested class, the programmer can use fully qualified names.
+</p>
+<pre class="code php"><span class="kw2">class</span> Inner <span class="br0">&#123;</span><span class="br0">&#125;</span>
+&nbsp;
+<span class="kw2">abstract</span> <span class="kw2">class</span> Outer <span class="br0">&#123;</span>
+    <span class="kw2">class</span> Inner <span class="br0">&#123;</span><span class="br0">&#125;</span>
+    <span class="kw2">public</span> <span class="kw2">function</span> foo<span class="br0">&#40;</span>Inner <span class="re0">$i</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">// resolves to Outer\Inner</span>
+    <span class="kw2">public</span> <span class="kw2">function</span> bar<span class="br0">&#40;</span>\Inner <span class="re0">$i</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">// resolves to global Inner</span>
+<span class="br0">&#125;</span></pre>
+
+<p>
+This applies to deeply nested classes as well:
+</p>
+<pre class="code php"><span class="kw2">class</span> Outer <span class="br0">&#123;</span>
+    <span class="kw2">class</span> Middle <span class="br0">&#123;</span>
+        <span class="kw2">class</span> Inner <span class="br0">&#123;</span><span class="br0">&#125;</span>
+    <span class="br0">&#125;</span>
+    <span class="kw2">public</span> <span class="kw2">function</span> foo<span class="br0">&#40;</span>Middle\Inner <span class="re0">$i</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">// resolves to Outer\Middle\Inner</span>
+<span class="br0">&#125;</span></pre>
+
+<p>
+This can lead to accidentally shadowing a class in the same namespace, thus requiring the use of <code>use</code> statements or fully qualified names to disambiguate.
+</p>
+
+</div>
+
+<h3 class="sectionedit11" id="reflection">Reflection</h3>
+<div class="level3">
+
+<p>
+Several new methods are added to <code>ReflectionClass</code> to help support inspection of nested classes:
+</p>
+<pre class="code php"><span class="re0">$reflection</span> <span class="sy0">=</span> <span class="kw2">new</span> ReflectionClass<span class="br0">&#40;</span><span class="st_h">'\a\namespace\Outer\Inner'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="re0">$reflection</span><span class="sy0">-&gt;</span><span class="me1">isNestedClass</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">// true</span>
+<span class="re0">$reflection</span><span class="sy0">-&gt;</span><span class="me1">isPublic</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">||</span> <span class="re0">$reflection</span><span class="sy0">-&gt;</span><span class="me1">isProtected</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">||</span> <span class="re0">$reflection</span><span class="sy0">-&gt;</span><span class="me1">isPrivate</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">// true</span>
+<span class="re0">$reflection</span><span class="sy0">-&gt;</span><span class="me1">getName</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">// \a\namespace\Outer\Inner</span>
+<span class="re0">$reflection</span><span class="sy0">-&gt;</span><span class="me1">getShortName</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">// Inner</span></pre>
+
+<p>
+For non-nested classes, <code>ReflectionClass::isNestedClass()</code> returns <code>false</code>.
+</p>
+
+<p>
+A future addition to <code>ReflectionClass::getNestedClasses()</code> may allow enumeration of nested class declarations.
+</p>
+
+</div>
+
+<h3 class="sectionedit12" id="autoloading">Autoloading</h3>
+<div class="level3">
+
+<p>
+Since nested classes are referenced using standard -separated names, the engine treats them like any other class name during resolution. If the outer class has not yet been loaded, PHP will attempt to autoload the nested class name, which may result in fallback behavior depending on the autoloader. Implementers are encouraged to structure autoloaders to load the outer class when a nested class is referenced.
+</p>
+
+</div>
+
+<h3 class="sectionedit13" id="usage">Usage</h3>
+<div class="level3">
+
+<p>
+Nested classes may be defined in the body of any class-like structure, except traits:
+</p>
+<ul>
+<li class="level1"><div class="li"> in a class body</div>
+</li>
+<li class="level1"><div class="li"> in an anonymous class body</div>
+</li>
+<li class="level1"><div class="li"> in an enum body</div>
+</li>
+<li class="level1"><div class="li"> in an interface body</div>
+</li>
+</ul>
+
+<p>
+Traits are not allowed to contain nested classes and are left to a future <abbr title="Request for Comments">RFC</abbr>. Traits are excluded from this <abbr title="Request for Comments">RFC</abbr> because nested class resolution via use statements introduces ambiguities about scope and visibility. These concerns are deferred to a future <abbr title="Request for Comments">RFC</abbr>.
+</p>
+
+</div>
+
+<h3 class="sectionedit14" id="outer_class_effects">Outer class effects</h3>
+<div class="level3">
+
+<p>
+Nested classes are fully independent of their outer class’s declaration modifiers. Outer class modifiers such as abstract, final, or readonly do not implicitly cascade down or affect the nested classes defined within them.
+</p>
+
+<p>
+Specifically:
+</p>
+<ul>
+<li class="level1"><div class="li"> An abstract outer class can define concrete (non-abstract) nested classes. Nested classes remain instantiable, independent of the outer class’s abstractness.</div>
+</li>
+<li class="level1"><div class="li"> A final outer class does not force its nested classes to be final. Nested classes within a final class can be extended internally, providing flexibility within encapsulation boundaries.</div>
+</li>
+<li class="level1"><div class="li"> A readonly outer class can define mutable nested classes. This supports internal flexibility, allowing the outer class to maintain immutability in its external <abbr title="Application Programming Interface">API</abbr> while managing state changes internally via nested classes.</div>
+</li>
+</ul>
+
+<p>
+Examples:
+</p>
+<pre class="code php"><span class="kw2">abstract</span> <span class="kw2">class</span> Service <span class="br0">&#123;</span>
+    <span class="co1">// Valid: Nested class is not abstract, despite the outer class being abstract.</span>
+    <span class="kw2">public</span> <span class="kw2">class</span> Implementation <span class="br0">&#123;</span>
+        <span class="kw2">public</span> <span class="kw2">function</span> run<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">:</span> void <span class="br0">&#123;</span><span class="br0">&#125;</span>
+    <span class="br0">&#125;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="co1">// Allowed; abstract outer class does not force nested classes to be abstract.</span>
+<span class="kw2">new</span> Service\Implementation<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+<pre class="code php">readonly <span class="kw2">class</span> ImmutableCollection <span class="br0">&#123;</span>
+    <span class="kw2">private</span> <a href="http://www.php.net/array"><span class="kw3">array</span></a> <span class="re0">$items</span><span class="sy0">;</span>
+&nbsp;
+    <span class="kw2">public</span> <span class="kw2">function</span> __construct<span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a> <span class="re0">$items</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">items</span> <span class="sy0">=</span> <span class="re0">$items</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+&nbsp;
+    <span class="kw2">public</span> <span class="kw2">function</span> getMutableBuilder<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">:</span> Builder <span class="br0">&#123;</span>
+        <span class="kw1">return</span> <span class="kw2">new</span> Builder<span class="br0">&#40;</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">items</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+&nbsp;
+    <span class="kw2">public</span> <span class="kw2">class</span> Builder <span class="br0">&#123;</span>
+        <span class="kw2">private</span> <a href="http://www.php.net/array"><span class="kw3">array</span></a> <span class="re0">$items</span><span class="sy0">;</span>
+&nbsp;
+        <span class="kw2">public</span> <span class="kw2">function</span> __construct<span class="br0">&#40;</span><a href="http://www.php.net/array"><span class="kw3">array</span></a> <span class="re0">$items</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+            <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">items</span> <span class="sy0">=</span> <span class="re0">$items</span><span class="sy0">;</span>
+        <span class="br0">&#125;</span>
+&nbsp;
+        <span class="kw2">public</span> <span class="kw2">function</span> add<span class="br0">&#40;</span>mixed <span class="re0">$item</span><span class="br0">&#41;</span><span class="sy0">:</span> <span class="kw2">self</span> <span class="br0">&#123;</span>
+            <span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">items</span><span class="br0">&#91;</span><span class="br0">&#93;</span> <span class="sy0">=</span> <span class="re0">$item</span><span class="sy0">;</span>
+            <span class="kw1">return</span> <span class="re0">$this</span><span class="sy0">;</span>
+        <span class="br0">&#125;</span>
+&nbsp;
+        <span class="kw2">public</span> <span class="kw2">function</span> build<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">:</span> ImmutableCollection <span class="br0">&#123;</span>
+            <span class="kw1">return</span> <span class="kw2">new</span> ImmutableCollection<span class="br0">&#40;</span><span class="re0">$this</span><span class="sy0">-&gt;</span><span class="me1">items</span><span class="br0">&#41;</span><span class="sy0">;</span>
+        <span class="br0">&#125;</span>
+    <span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre>
+
+<p>
+In this example, even though <code>Builder</code> is a mutable nested class within a readonly outer class, the outer class maintains its immutability externally, while nested classes help internally with state management or transitional operations.
+</p>
+
+</div>
+
+<h3 class="sectionedit15" id="abstract_nested_classes">Abstract nested classes</h3>
+<div class="level3">
+
+<p>
+It is worth exploring what an <code>abstract</code> nested class means and how it works. Abstract nested classes are allowed to be the parent of any class that can see them. For example, a private abstract class may only be inherited by subclasses in the same outer class. A protected abstract class may be inherited by a nested class in a subclass of the outer class or a nested class in the same outer class. However, this is not required by subclasses of the outer class.
+</p>
+
+<p>
+Abstract nested classes may not be instantiated, just as abstract outer classes may not be instantiated.
+</p>
+<pre class="code php"><span class="kw2">class</span> OuterParent <span class="br0">&#123;</span>
+    <span class="kw2">protected</span> <span class="kw2">abstract</span> <span class="kw2">class</span> InnerBase <span class="br0">&#123;</span><span class="br0">&#125;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="co1">// Middle is allowed, does not have to implement InnerBase</span>
+<span class="kw2">class</span> Middle <span class="kw2">extends</span> OuterParent <span class="br0">&#123;</span><span class="br0">&#125;</span>
+&nbsp;
+<span class="co1">// Last demonstrates extending the abstract inner class explicitly.</span>
+<span class="kw2">class</span> Last <span class="kw2">extends</span> OuterParent <span class="br0">&#123;</span>
+    <span class="kw2">private</span> <span class="kw2">abstract</span> <span class="kw2">class</span> InnerExtended <span class="kw2">extends</span> OuterParent\InnerBase <span class="br0">&#123;</span><span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre>
+
+</div>
+
+<h2 class="sectionedit16" id="backward_incompatible_changes">Backward Incompatible Changes</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> This <abbr title="Request for Comments">RFC</abbr> introduces new syntax and behavior to PHP, which does not conflict with existing syntax.</div>
+</li>
+<li class="level1"><div class="li"> Some error messages will be updated to reflect nested classes, and tests that depend on these error messages are likely to fail.</div>
+</li>
+<li class="level1"><div class="li"> Tooling using AST or tokenization may need to be updated to support the new syntax.</div>
+</li>
+</ul>
+
+<p>
+Note: Applying visibility modifiers to class declarations is new syntax, but only valid in nested contexts. Top-level classes will continue to behave as before, and this change introduces no ambiguity in existing code.
+</p>
+
+</div>
+
+<h2 class="sectionedit17" id="proposed_php_version_s">Proposed PHP Version(s)</h2>
+<div class="level2">
+
+<p>
+This <abbr title="Request for Comments">RFC</abbr> targets the next version of PHP.
+</p>
+
+</div>
+
+<h2 class="sectionedit18" id="rfc_impact">RFC Impact</h2>
+<div class="level2">
+
+</div>
+
+<h3 class="sectionedit19" id="to_sapis">To SAPIs</h3>
+<div class="level3">
+
+<p>
+None.
+</p>
+
+</div>
+
+<h3 class="sectionedit20" id="to_existing_extensions">To Existing Extensions</h3>
+<div class="level3">
+
+<p>
+None were discovered during testing, but it is possible there are unbundled extensions that may be affected.
+</p>
+
+</div>
+
+<h3 class="sectionedit21" id="to_opcache">To Opcache</h3>
+<div class="level3">
+
+<p>
+This change introduces a new AST, and other changes that affect opcache. These changes are included as part of the PR that implements this feature.
+</p>
+
+</div>
+
+<h3 class="sectionedit22" id="to_tooling">To Tooling</h3>
+<div class="level3">
+
+<p>
+Tooling that uses AST or tokenization may need to be updated to support the new syntax, such as syntax highlighting, static analysis, IDEs, and code generation tools.
+</p>
+
+</div>
+
+<h2 class="sectionedit23" id="open_issues">Open Issues</h2>
+<div class="level2">
+
+<p>
+None.
+</p>
+
+</div>
+
+<h2 class="sectionedit24" id="unaffected_php_functionality">Unaffected PHP Functionality</h2>
+<div class="level2">
+
+<p>
+There should be no change to any existing PHP syntax.
+</p>
+
+</div>
+
+<h2 class="sectionedit25" id="future_scope">Future Scope</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Inner interfaces</div>
+</li>
+<li class="level1"><div class="li"> Inner traits</div>
+</li>
+</ul>
+
+<p>
+This <abbr title="Request for Comments">RFC</abbr> focuses on class and enum nesting. Interfaces and traits are excluded for now due to their unique visibility and resolution semantics, but may be considered in follow-up RFCs.
+</p>
+
+</div>
+
+<h2 class="sectionedit26" id="proposed_voting_choices">Proposed Voting Choices</h2>
+<div class="level2">
+
+<p>
+As this is a significant change to the language, a 2/3 majority is required.
+</p>
+
+<!-- Doodle Plugin -->
+<form action="/start" method="post" name="doodle__form" id="doodle__form__nested_classes" accept-charset="utf-8" >
+
+<input type="hidden" name="sectok" value="" />
+<input type="hidden" name="do" value="show" >
+<input type="hidden" name="id" value="rfc:short-and-inner-classes" >
+<input type="hidden" name="formId" value="doodle__form__nested_classes" >
+<input type="hidden" name="edit__entry"   value="">
+<input type="hidden" name="delete__entry" value="">
+
+<table class="inline">
+  <tbody>
+    <tr class="row0">
+      <th class="centeralign" colspan="3">
+        Nested Classes      </th>
+    </tr>
+    <tr class="row1">
+        <th class="col0">Real name</th>
+        <td class="centeralign">Yes</td>
+        <td class="centeralign">No</td>
+    </tr>
+
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/alec">alec</a>&nbsp;(alec)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2025/05/04 12:28"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ashnazg">ashnazg</a>&nbsp;(ashnazg)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2025/05/07 14:55"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/brzuchal">brzuchal</a>&nbsp;(brzuchal)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2025/05/16 14:15"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/bwoebi">bwoebi</a>&nbsp;(bwoebi)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2025/05/03 22:17"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/cschneid">cschneid</a>&nbsp;(cschneid)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2025/05/05 13:19"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/daniels">daniels</a>&nbsp;(daniels)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2025/05/15 13:11"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/derick">derick</a>&nbsp;(derick)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2025/05/03 14:22"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ericmann">ericmann</a>&nbsp;(ericmann)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2025/05/04 04:28"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/galvao">galvao</a>&nbsp;(galvao)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2025/05/06 06:36"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/imsop">imsop</a>&nbsp;(imsop)        </td>
+        <td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2025/05/08 15:57"></td><td  class="centeralign" style="background-color:#FCC">&nbsp;</td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/kalle">kalle</a>&nbsp;(kalle)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2025/05/12 18:36"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/kguest">kguest</a>&nbsp;(kguest)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2025/05/09 11:59"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/kinncj">kinncj</a>&nbsp;(kinncj)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2025/05/14 00:43"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/kocsismate">kocsismate</a>&nbsp;(kocsismate)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2025/05/08 06:57"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/levim">levim</a>&nbsp;(levim)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2025/05/14 04:19"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/mbeccati">mbeccati</a>&nbsp;(mbeccati)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2025/05/04 21:37"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/pollita">pollita</a>&nbsp;(pollita)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2025/05/15 08:05"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/ramsey">ramsey</a>&nbsp;(ramsey)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2025/05/09 23:50"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/reywob">reywob</a>&nbsp;(reywob)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2025/05/08 10:45"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/theodorejb">theodorejb</a>&nbsp;(theodorejb)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2025/05/04 12:18"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/timwolla">timwolla</a>&nbsp;(timwolla)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2025/05/04 13:52"></td>        
+    </tr>
+    <tr>
+        <td class="rightalign">
+                    <a href="//people.php.net/weierophinney">weierophinney</a>&nbsp;(weierophinney)        </td>
+        <td  class="centeralign" style="background-color:#FCC">&nbsp;</td><td  class="centeralign" style="background-color:#AFA"><img src="/lib/images/success.png" title="2025/05/05 14:26"></td>        
+    </tr>
+ 
+    <!-- Results / sum per column -->
+    <tr>
+        <th class="rightalign"><b>Final result:</b></th>
+        <th class="centeralign"><b>2</b></th>
+        <th class="centeralign"><b>20</b></th>
+    </tr>
+
+
+    
+    <tr>
+      <td colspan="3">
+        This poll has been closed.      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+</form>
+
+
+
+
+
+</div>
+
+<h2 class="sectionedit27" id="patches_and_tests">Patches and Tests</h2>
+<div class="level2">
+
+<p>
+To be completed.
+</p>
+
+</div>
+
+<h2 class="sectionedit28" id="implementation">Implementation</h2>
+<div class="level2">
+
+<p>
+See: <a href="https://github.com/php/php-src/pull/18207" class="urlextern" title="https://github.com/php/php-src/pull/18207" rel="ugc nofollow">https://github.com/php/php-src/pull/18207</a> for a proof-of-concept implementation.
+</p>
+
+</div>
+
+<h2 class="sectionedit29" id="references">References</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="https://externals.io/message/125975#125977" class="urlextern" title="https://externals.io/message/125975#125977" rel="ugc nofollow">email that inspired this RFC</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="https://wiki.php.net/rfc/records" class="urlextern" title="https://wiki.php.net/rfc/records" rel="ugc nofollow">RFC: Records</a></div>
+</li>
+</ul>
+
+</div>
+
+<h2 class="sectionedit30" id="rejected_features">Rejected Features</h2>
+<div class="level2">
+
+<p>
+TBD
+</p>
+
+</div>
+                    <!-- wikipage stop -->
+                                    </div>
+
+                <div class="docInfo"><bdi>rfc/short-and-inner-classes.txt</bdi> · Last modified: 2025/05/18 12:53 by <bdi>withinboredom</bdi></div>
+
+                            </div></div><!-- /content -->
+
+            <hr class="a11y" />
+
+            <!-- PAGE ACTIONS -->
+            <div id="dokuwiki__pagetools">
+                <h3 class="a11y">Page Tools</h3>
+                <div class="tools">
+                    <ul>
+                        <li><a href="/rfc/short-and-inner-classes?do=edit"  class="action source" accesskey="v" rel="nofollow" title="Show pagesource [V]"><span>Show pagesource</span></a></li><li><a href="/rfc/short-and-inner-classes?do=revisions"  class="action revs" accesskey="o" rel="nofollow" title="Old revisions [O]"><span>Old revisions</span></a></li><li><a href="/rfc/short-and-inner-classes?do=backlink"  class="action backlink" rel="nofollow" title="Backlinks"><span>Backlinks</span></a></li><li><a href="#dokuwiki__top"  class="action top" accesskey="t" rel="nofollow" title="Back to top [T]"><span>Back to top</span></a></li>                    </ul>
+                </div>
+            </div>
+        </div><!-- /wrapper -->
+
+    </div></div><!-- /site -->
+
+    <div class="no"><img src="/lib/exe/taskrunner.php?id=rfc%3Ashort-and-inner-classes&amp;1749905222" width="2" height="1" alt="" /></div>
+    <div id="screen__mode" class="no"></div>    <!--[if ( lte IE 7 | IE 8 ) ]></div><![endif]-->
+</section>
+
+﻿<section class="secondscreen">
+  <!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#php_rfcnested_classes">PHP RFC: Nested Classes</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#introduction">Introduction</a></div></li>
+<li class="level2"><div class="li"><a href="#proposal">Proposal</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#use-cases_and_examples">Use-cases and examples</a></div></li>
+<li class="level3"><div class="li"><a href="#why_php_needs_nested_classes">Why PHP needs nested classes</a></div></li>
+<li class="level3"><div class="li"><a href="#declaration_syntax">Declaration Syntax</a></div></li>
+<li class="level3"><div class="li"><a href="#visibility">Visibility</a></div></li>
+<li class="level3"><div class="li"><a href="#accessing_outer_classes">Accessing outer classes</a></div></li>
+<li class="level3"><div class="li"><a href="#resolution">Resolution</a></div></li>
+<li class="level3"><div class="li"><a href="#reflection">Reflection</a></div></li>
+<li class="level3"><div class="li"><a href="#autoloading">Autoloading</a></div></li>
+<li class="level3"><div class="li"><a href="#usage">Usage</a></div></li>
+<li class="level3"><div class="li"><a href="#outer_class_effects">Outer class effects</a></div></li>
+<li class="level3"><div class="li"><a href="#abstract_nested_classes">Abstract nested classes</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#backward_incompatible_changes">Backward Incompatible Changes</a></div></li>
+<li class="level2"><div class="li"><a href="#proposed_php_version_s">Proposed PHP Version(s)</a></div></li>
+<li class="level2"><div class="li"><a href="#rfc_impact">RFC Impact</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#to_sapis">To SAPIs</a></div></li>
+<li class="level3"><div class="li"><a href="#to_existing_extensions">To Existing Extensions</a></div></li>
+<li class="level3"><div class="li"><a href="#to_opcache">To Opcache</a></div></li>
+<li class="level3"><div class="li"><a href="#to_tooling">To Tooling</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#open_issues">Open Issues</a></div></li>
+<li class="level2"><div class="li"><a href="#unaffected_php_functionality">Unaffected PHP Functionality</a></div></li>
+<li class="level2"><div class="li"><a href="#future_scope">Future Scope</a></div></li>
+<li class="level2"><div class="li"><a href="#proposed_voting_choices">Proposed Voting Choices</a></div></li>
+<li class="level2"><div class="li"><a href="#patches_and_tests">Patches and Tests</a></div></li>
+<li class="level2"><div class="li"><a href="#implementation">Implementation</a></div></li>
+<li class="level2"><div class="li"><a href="#references">References</a></div></li>
+<li class="level2"><div class="li"><a href="#rejected_features">Rejected Features</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+</section>
+</section><!-- .fullscreen -->
+<footer>
+  <nav class="fullscreen">
+    <ul>
+      <li><a href="//php.net/copyright">Copyright © 2001-2025 The PHP Group</a></li>
+      <li><a href="//php.net/sites">Other PHP.net sites</a></li>
+      <li><a href="//php.net/privacy">Privacy policy</a></li>
+    </ul>
+  </nav>
+</footer>
+
+</div><!-- .wrap -->
+</body>
+</html>

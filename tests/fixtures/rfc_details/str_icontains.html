@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>PHP: rfc:str_icontains</title>
+
+  <meta name="generator" content="DokuWiki"/>
+<meta name="robots" content="noindex,nofollow"/>
+<meta name="keywords" content="rfc,str_icontains"/>
+<link rel="search" type="application/opensearchdescription+xml" href="/lib/exe/opensearch.php" title="PHP Wiki"/>
+<link rel="start" href="/"/>
+<link rel="contents" href="/rfc/str_icontains?do=index" title="Sitemap"/>
+<link rel="manifest" href="/lib/exe/manifest.php"/>
+<link rel="alternate" type="application/rss+xml" title="Recent Changes" href="/feed.php"/>
+<link rel="alternate" type="application/rss+xml" title="Current namespace" href="/feed.php?mode=list&amp;ns=rfc"/>
+<link rel="alternate" type="text/html" title="Plain HTML" href="/_export/xhtml/rfc/str_icontains"/>
+<link rel="alternate" type="text/plain" title="Wiki Markup" href="/_export/raw/rfc/str_icontains"/>
+<link rel="canonical" href="https://wiki.php.net/rfc/str_icontains"/>
+<link rel="stylesheet" href="/lib/exe/css.php?t=phpnet&amp;tseed=7bd2b78bb5550d8ceb3c825c96dd22d0"/>
+<!--[if gte IE 9]><!-->
+<script >/*<![CDATA[*/var NS='rfc';var JSINFO = {"id":"rfc:str_icontains","namespace":"rfc","ACT":"show","useHeadingNavigation":0,"useHeadingContent":0};
+/*!]]>*/</script>
+<script src="/lib/exe/jquery.php?tseed=f0349b609f9b91a485af8fd8ecd4aea4" defer="defer">/*<![CDATA[*/
+/*!]]>*/</script>
+<script src="/lib/exe/js.php?t=phpnet&amp;tseed=7bd2b78bb5550d8ceb3c825c96dd22d0" defer="defer">/*<![CDATA[*/
+/*!]]>*/</script>
+<!--<![endif]-->
+  <link media='all' rel='stylesheet' href='//shared.php.net/styles/defaults.css?filemtime=1732659606'/>
+  <link media='all' rel='stylesheet' href='//shared.php.net/styles/wiki.css?filemtime=1707322306'/>
+
+  <link href="//fonts.googleapis.com/css?family=Fira+Sans|Source+Sans+Pro:300,400,600,400italic,600italic|Source+Code+Pro&amp;subset=latin,latin-ext" rel="stylesheet">
+  <link rel="shortcut icon" href="//php.net/favicon.ico">
+<!--[if lt IE 9]>
+  <script src="//shared.php.net/js/html5shiv.js"></script>
+<![endif]-->
+  </head>
+<body id="">
+
+<div class="wrap">
+<header class='clearfix'>
+  <div id="mainmenu-toggle-overlay"></div>
+  <input type="checkbox" id="mainmenu-toggle">
+  <nav class="fullscreen">
+    <div class="mainscreen">
+      <a href="/" class="home"><img src="//php.net/images/logo.php?" width="48" height="24" alt="php"><span class="subdomain"></span></a>
+      <ul>
+        <li class=""><a href="?do=login">Login</a></li>
+        <li class=""><a href="?do=register">Register</a></li>
+      </ul>
+    </div>
+    <div class="secondscreen">
+      <form method="get" action="/start">
+        <input type="search" placeholder="Search" name="id" class="search">
+        <input type="hidden" name="do" value="search">
+      </form>
+    </div>
+  </nav>
+</header>
+<div id="flash-message"></div>
+<nav id="megadropdown"></nav>
+
+<section class="fullscreen clearfix">
+
+
+<section id="breadcrumbs">
+<nav>
+<span class="bchead">You are here: </span><span class="home"><bdi><a href="/start" class="wikilink1" title="start" data-wiki-id="start">start</a></bdi></span> › <bdi><a href="/rfc" class="wikilink1" title="rfc" data-wiki-id="rfc">rfc</a></bdi> › <bdi><a href="/rfc/str_icontains" class="wikilink1" title="rfc:str_icontains" data-wiki-id="rfc:str_icontains">str_icontains</a></bdi></nav>
+</section>
+<section class="mainscreen">
+    <!--[if lte IE 7 ]><div id="IE7"><![endif]--><!--[if IE 8 ]><div id="IE8"><![endif]-->
+    <div id="dokuwiki__site"><div id="dokuwiki__top" class="site dokuwiki mode_show tpl_phpnet     ">
+
+
+        <div class="wrapper group">
+
+            
+            <!-- ********** CONTENT ********** -->
+            <div id="dokuwiki__content"><div class="pad group">
+
+                <div class="pageId"><span>rfc:str_icontains</span></div>
+
+                <div class="page group">
+                                                            <!-- wikipage start -->
+                                        
+<h1 class="sectionedit1" id="php_rfcstr_icontains">PHP RFC: str_icontains</h1>
+<div class="level1">
+<ul>
+<li class="level1"><div class="li"> Version: 0.1</div>
+</li>
+<li class="level1"><div class="li"> Date: 2025-06-13</div>
+</li>
+<li class="level1"><div class="li"> Author: Adam Cable, adamcable@gmail.com</div>
+</li>
+<li class="level1"><div class="li"> Status: In Draft</div>
+</li>
+<li class="level1"><div class="li"> First Published at: <a href="https://wiki.php.net/rfc/str_icontains" class="urlextern" title="https://wiki.php.net/rfc/str_icontains" rel="ugc nofollow">https://wiki.php.net/rfc/str_icontains</a></div>
+</li>
+</ul>
+
+</div>
+
+<h2 class="sectionedit2" id="introduction">Introduction</h2>
+<div class="level2">
+
+<p>
+PHP 8.0 introduced the str_contains function, which provides a clear and concise way to determine if a string contains a given substring. This was a significant improvement over the traditional method of using strpos and checking the return value.
+</p>
+
+<p>
+However, a common use case is to check for the presence of a substring in a case-insensitive manner. Currently, this requires using functions like stripos or converting both the haystack and needle to the same case using strtolower or strtoupper before comparison. These approaches can be less intuitive and more error-prone.
+</p>
+
+<p>
+To address this, this <abbr title="Request for Comments">RFC</abbr> proposes the addition of a new function, str_icontains, as a case-insensitive counterpart to str_contains. The naming convention follows the precedent set by existing string functions, such as str_replace and its case-insensitive variant, str_ireplace.
+</p>
+
+</div>
+
+<h2 class="sectionedit3" id="proposal">Proposal</h2>
+<div class="level2">
+
+<p>
+It is proposed to add a new function to PHP:
+</p>
+<pre class="code php"><span class="kw2">function</span> str_icontains<span class="br0">&#40;</span>string <span class="re0">$haystack</span><span class="sy0">,</span> string <span class="re0">$needle</span><span class="br0">&#41;</span><span class="sy0">:</span> bool</pre>
+
+<p>
+This function will return true if $needle is found in $haystack, with the comparison performed in a case-insensitive manner. The case-insensitivity will be based on <abbr title="American Standard Code for Information Interchange">ASCII</abbr> case folding, which means it will correctly handle standard English alphabet characters (a-z, A-Z). This is consistent with the behaviour of other case-insensitive string functions in PHP, such as str_ireplace and stripos.
+</p>
+
+</div>
+
+<h3 class="sectionedit4" id="use_cases">Use Cases</h3>
+<div class="level3">
+
+</div>
+
+<h4 id="example_1basic_usage">Example 1: Basic Usage</h4>
+<div class="level4">
+<pre class="code php"><span class="re0">$string</span> <span class="sy0">=</span> <span class="st0">&quot;The quick brown fox jumps over the lazy dog.&quot;</span><span class="sy0">;</span>
+&nbsp;
+str_icontains<span class="br0">&#40;</span><span class="re0">$string</span><span class="sy0">,</span> <span class="st_h">'fox'</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">// true</span>
+str_icontains<span class="br0">&#40;</span><span class="re0">$string</span><span class="sy0">,</span> <span class="st_h">'FOX'</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">// true</span>
+str_icontains<span class="br0">&#40;</span><span class="re0">$string</span><span class="sy0">,</span> <span class="st_h">'Fox'</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">// true</span></pre>
+
+</div>
+
+<h4 id="example_2comparison_with_current_methods">Example 2: Comparison with current methods</h4>
+<div class="level4">
+
+<p>
+Without str_icontains, a developer would have to write:
+</p>
+<pre class="code php"><span class="co1">// Using stripos</span>
+<a href="http://www.php.net/stripos"><span class="kw3">stripos</span></a><span class="br0">&#40;</span><span class="re0">$string</span><span class="sy0">,</span> <span class="st_h">'FOX'</span><span class="br0">&#41;</span> <span class="sy0">!==</span> <span class="kw4">false</span><span class="sy0">;</span> <span class="co1">// true</span>
+&nbsp;
+<span class="co1">// Using strtolower</span>
+str_contains<span class="br0">&#40;</span><a href="http://www.php.net/strtolower"><span class="kw3">strtolower</span></a><span class="br0">&#40;</span><span class="re0">$string</span><span class="br0">&#41;</span><span class="sy0">,</span> <a href="http://www.php.net/strtolower"><span class="kw3">strtolower</span></a><span class="br0">&#40;</span><span class="st_h">'FOX'</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">// true</span></pre>
+
+<p>
+The proposed str_icontains function is more readable and less susceptible to errors.
+</p>
+
+</div>
+
+<h2 class="sectionedit5" id="backward_incompatible_changes">Backward Incompatible Changes</h2>
+<div class="level2">
+
+<p>
+This <abbr title="Request for Comments">RFC</abbr> proposes the addition of a new function, so it does not introduce any backward-incompatible changes.
+</p>
+
+</div>
+
+<h2 class="sectionedit6" id="proposed_php_version_s">Proposed PHP Version(s)</h2>
+<div class="level2">
+
+<p>
+Next PHP 8.x (8.5).
+</p>
+
+</div>
+
+<h2 class="sectionedit7" id="proposed_voting_choices">Proposed Voting Choices</h2>
+<div class="level2">
+
+<p>
+Yes or no vote. 2/3 required to pass.
+</p>
+
+</div>
+
+<h2 class="sectionedit8" id="patches_and_tests">Patches and Tests</h2>
+<div class="level2">
+
+<p>
+<a href="https://github.com/php/php-src/pull/18705" class="urlextern" title="https://github.com/php/php-src/pull/18705" rel="ugc nofollow">https://github.com/php/php-src/pull/18705</a>
+</p>
+
+</div>
+
+<h2 class="sectionedit9" id="implementation">Implementation</h2>
+<div class="level2">
+
+<p>
+After the project is implemented, this section should contain
+</p>
+<ol>
+<li class="level1"><div class="li"> the version(s) it was merged into</div>
+</li>
+<li class="level1"><div class="li"> a link to the git commit(s)</div>
+</li>
+<li class="level1"><div class="li"> a link to the PHP manual entry for the feature</div>
+</li>
+<li class="level1"><div class="li"> a link to the language specification section (if any)</div>
+</li>
+</ol>
+
+</div>
+
+<h2 class="sectionedit10" id="references">References</h2>
+<div class="level2">
+
+<p>
+Prior discussion in May 2025: <a href="https://externals.io/message/127504" class="urlextern" title="https://externals.io/message/127504" rel="ugc nofollow">https://externals.io/message/127504</a>
+</p>
+
+</div>
+
+<h2 class="sectionedit11" id="rejected_features">Rejected Features</h2>
+<div class="level2">
+
+</div>
+
+<h3 class="sectionedit12" id="utf-8_support">UTF-8 Support</h3>
+<div class="level3">
+
+<p>
+This <abbr title="Request for Comments">RFC</abbr> intentionally omits support for full UTF-8 case folding. The primary goal is to provide a direct, case-insensitive companion to the existing str_contains function, thereby achieving feature parity with other core string functions that operate on <abbr title="American Standard Code for Information Interchange">ASCII</abbr> case folding (e.g., stripos, stristr). Introducing multibyte-aware functionality would be a significant extension beyond this scope and is better suited for a separate, more comprehensive proposal regarding multibyte string handling.
+</p>
+
+</div>
+
+<h3 class="sectionedit13" id="stri_contains_naming">stri_contains Naming</h3>
+<div class="level3">
+
+<p>
+The name str_icontains was chosen over stri_contains to maintain consistency with the precedent set by str_ireplace.
+</p>
+
+</div>
+                    <!-- wikipage stop -->
+                                    </div>
+
+                <div class="docInfo"><bdi>rfc/str_icontains.txt</bdi> · Last modified: 2025/06/13 08:39 by <bdi>adamcable</bdi></div>
+
+                            </div></div><!-- /content -->
+
+            <hr class="a11y" />
+
+            <!-- PAGE ACTIONS -->
+            <div id="dokuwiki__pagetools">
+                <h3 class="a11y">Page Tools</h3>
+                <div class="tools">
+                    <ul>
+                        <li><a href="/rfc/str_icontains?do=edit"  class="action source" accesskey="v" rel="nofollow" title="Show pagesource [V]"><span>Show pagesource</span></a></li><li><a href="/rfc/str_icontains?do=revisions"  class="action revs" accesskey="o" rel="nofollow" title="Old revisions [O]"><span>Old revisions</span></a></li><li><a href="/rfc/str_icontains?do=backlink"  class="action backlink" rel="nofollow" title="Backlinks"><span>Backlinks</span></a></li><li><a href="#dokuwiki__top"  class="action top" accesskey="t" rel="nofollow" title="Back to top [T]"><span>Back to top</span></a></li>                    </ul>
+                </div>
+            </div>
+        </div><!-- /wrapper -->
+
+    </div></div><!-- /site -->
+
+    <div class="no"><img src="/lib/exe/taskrunner.php?id=rfc%3Astr_icontains&amp;1749905177" width="2" height="1" alt="" /></div>
+    <div id="screen__mode" class="no"></div>    <!--[if ( lte IE 7 | IE 8 ) ]></div><![endif]-->
+</section>
+
+﻿<section class="secondscreen">
+  <!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#php_rfcstr_icontains">PHP RFC: str_icontains</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#introduction">Introduction</a></div></li>
+<li class="level2"><div class="li"><a href="#proposal">Proposal</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#use_cases">Use Cases</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#backward_incompatible_changes">Backward Incompatible Changes</a></div></li>
+<li class="level2"><div class="li"><a href="#proposed_php_version_s">Proposed PHP Version(s)</a></div></li>
+<li class="level2"><div class="li"><a href="#proposed_voting_choices">Proposed Voting Choices</a></div></li>
+<li class="level2"><div class="li"><a href="#patches_and_tests">Patches and Tests</a></div></li>
+<li class="level2"><div class="li"><a href="#implementation">Implementation</a></div></li>
+<li class="level2"><div class="li"><a href="#references">References</a></div></li>
+<li class="level2"><div class="li"><a href="#rejected_features">Rejected Features</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#utf-8_support">UTF-8 Support</a></div></li>
+<li class="level3"><div class="li"><a href="#stri_contains_naming">stri_contains Naming</a></div></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+</section>
+</section><!-- .fullscreen -->
+<footer>
+  <nav class="fullscreen">
+    <ul>
+      <li><a href="//php.net/copyright">Copyright © 2001-2025 The PHP Group</a></li>
+      <li><a href="//php.net/sites">Other PHP.net sites</a></li>
+      <li><a href="//php.net/privacy">Privacy policy</a></li>
+    </ul>
+  </nav>
+</footer>
+
+</div><!-- .wrap -->
+</body>
+</html>
