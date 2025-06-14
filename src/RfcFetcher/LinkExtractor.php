@@ -28,7 +28,14 @@ final class LinkExtractor
         $underDiscussionRfcs = $crawler->filter('#under_discussion + div a')->each($converter);
         $draftRfcs = $crawler->filter('#in_draft + div a')->each($converter);
         $processAndPolicyRfcs = $crawler->filter('#process_and_policy + div a')->each($converter);
+        $pendingImplementationLanding = $crawler->filter('#pending_implementationlanding + div a')->each($converter);
 
-        return [...$votingRfcs, ...$underDiscussionRfcs, ...$draftRfcs, ...$processAndPolicyRfcs];
+        return [
+            ...$votingRfcs,
+            ...$underDiscussionRfcs,
+            ...$draftRfcs,
+            ...$processAndPolicyRfcs,
+            ...$pendingImplementationLanding,
+        ];
     }
 }

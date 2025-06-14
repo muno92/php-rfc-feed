@@ -37,5 +37,8 @@ class LinkExtractorTest extends TestCase
         yield 'Accepted (Process and Policy)' => [
             new Link('Consolidate Coding Standards Policy Document', 'https://wiki.php.net/rfc/consolidate-coding-standard-policy-document'),
         ];
+        yield 'Accepted (Pending Implementation / Landing)' => [
+            new Link('Deprecations for PHP 8.4', 'https://wiki.php.net/rfc/deprecations_php_8_4'),
+        ];
     }
 }
