@@ -66,7 +66,12 @@ class FetchRfcsCommand extends Command
                     
                     $io->progressAdvance();
                 } catch (\Exception $e) {
-                    $io->warning(sprintf('Error processing RFC %s: %s', $link->title, $e->getMessage()));
+                    $io->warning(sprintf(
+                        'Error processing RFC "%s": %s (%s)',
+                        $link->title,
+                        $e->getMessage(),
+                        $e->getTraceAsString(),
+                    ));
                 }
             }
             
