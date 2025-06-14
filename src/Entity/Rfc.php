@@ -6,6 +6,7 @@ use App\Repository\RfcRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Collections\Order;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: RfcRepository::class)]
@@ -111,7 +112,7 @@ class Rfc
     public function getLatestActivity(): ?Activity
     {
         $criteria = Criteria::create()
-            ->orderBy(['createdAt' => 'DESC'])
+            ->orderBy(['createdAt' => Order::Descending])
             ->setMaxResults(1);
 
         $result = $this->activities->matching($criteria);
