@@ -15,7 +15,7 @@ class LinkExtractorTest extends TestCase
     public function testExtract(Link $expected): void
     {
         $crawler = new LinkExtractor();
-        $rfcList = $crawler->extract(file_get_contents(__DIR__ . '/../fixtures/rfc.html'));
+        $rfcList = $crawler->extract(file_get_contents(__DIR__ . '/../fixtures/rfc.html'), 'https://wiki.php.net');
 
         $this->assertContainsEquals($expected, $rfcList);
     }

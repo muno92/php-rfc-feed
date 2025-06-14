@@ -11,12 +11,9 @@ final class LinkExtractor
      * @param string $html
      * @return list<Link>
      */
-    public function extract(string $html): array
+    public function extract(string $html, string $host): array
     {
         $crawler = new Crawler($html);
-
-        $canonicalLink = $crawler->filter('link[rel="canonical"]')->attr('href');
-        $host = 'https://' . parse_url($canonicalLink, PHP_URL_HOST);
 
         $converter = function (Crawler $node) use ($host): Link {
             $title = $node->text();
