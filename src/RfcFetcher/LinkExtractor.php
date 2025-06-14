@@ -26,6 +26,7 @@ final class LinkExtractor
         $draftRfcs = $crawler->filter('#in_draft + div a')->each($converter);
         $processAndPolicyRfcs = $crawler->filter('#process_and_policy + div a')->each($converter);
         $pendingImplementationLanding = $crawler->filter('#pending_implementationlanding + div a')->each($converter);
+        $implemented = $crawler->filter('h3[id^="php_"] + div a')->each($converter);
 
         return [
             ...$votingRfcs,
@@ -33,6 +34,7 @@ final class LinkExtractor
             ...$draftRfcs,
             ...$processAndPolicyRfcs,
             ...$pendingImplementationLanding,
+            ...$implemented,
         ];
     }
 }

@@ -40,5 +40,11 @@ class LinkExtractorTest extends TestCase
         yield 'Accepted (Pending Implementation / Landing)' => [
             new Link('Deprecations for PHP 8.4', 'https://wiki.php.net/rfc/deprecations_php_8_4'),
         ];
+        yield 'Implemented (PHP8.5)' => [
+            new Link('Attributes on Constants', 'https://wiki.php.net/rfc/attributes-on-constants'),
+        ];
+        yield 'Implemented (PHP5.3)' => [
+            new Link('Closures', 'https://wiki.php.net/rfc/closures'),
+        ];
     }
 }
