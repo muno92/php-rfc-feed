@@ -32,7 +32,7 @@ final class LinkExtractor
         $inactive = $crawler->filter('#inactive + div a')->each($converter);
         $obsolete = $crawler->filter('#obsolete + div a')->each($converter);
 
-        return [
+        return array_filter([
             ...$votingRfcs,
             ...$underDiscussionRfcs,
             ...$draftRfcs,
@@ -43,6 +43,10 @@ final class LinkExtractor
             ...$withdrawn,
             ...$inactive,
             ...$obsolete,
-        ];
+        ], function (Link $link) use ($host) {
+            // Filter out links that are not RFC detail pages
+            // (e.g., external links or other wiki pages)
+            return str_starts_with($link->url, "{$host}/rfc/");
+        });
     }
 }

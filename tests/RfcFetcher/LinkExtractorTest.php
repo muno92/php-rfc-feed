@@ -9,13 +9,22 @@ use PHPUnit\Framework\TestCase;
 
 class LinkExtractorTest extends TestCase
 {
+    private LinkExtractor $extractor;
+
+    protected function setUp(): void
+    {
+        $this->extractor = new LinkExtractor();
+
+        parent::setUp();
+    }
+
+
     /**
      * @dataProvider extractProvider
      */
     public function testExtract(Link $expected): void
     {
-        $crawler = new LinkExtractor();
-        $rfcList = $crawler->extract(file_get_contents(__DIR__ . '/../fixtures/rfc.html'), 'https://wiki.php.net');
+        $rfcList = $this->extractor->extract(file_get_contents(__DIR__ . '/../fixtures/rfc.html'), 'https://wiki.php.net');
 
         $this->assertContainsEquals($expected, $rfcList);
     }
@@ -58,5 +67,12 @@ class LinkExtractorTest extends TestCase
         yield 'Obsolete' => [
             new Link('Property write/set visibility', 'https://wiki.php.net/rfc/property_write_visibility'),
         ];
+    }
+
+    public function testExtractedCount(): void
+    {
+        $rfcList = $this->extractor->extract(file_get_contents(__DIR__ . '/../fixtures/rfc.html'), 'https://wiki.php.net');
+
+        $this->assertCount(832, $rfcList);
     }
 }
