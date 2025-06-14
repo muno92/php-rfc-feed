@@ -94,5 +94,13 @@ class RfcDetailExtractorTest extends TestCase
                 new \DateTimeImmutable('2025/04/03 13:08')
             )
         ];
+        yield 'phpvcs' => [
+            'phpvcs.html',
+            new RfcDetail(
+                "Move PHP's source code and docs to something that isn't CVS",
+                'Accepted',
+                new \DateTimeImmutable('2025/04/03 13:08')
+            )
+        ];
     }
 }

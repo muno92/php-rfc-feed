@@ -14,10 +14,12 @@ final class RfcDetailExtractor
     {
         $crawler = new Crawler($html);
 
-        $title = str_replace('PHP RFC: ', '', $crawler->filter('h1.sectionedit1')->text());
+        $title = $crawler->filter('.sectionedit1')->text();
+        $title = str_replace('PHP RFC: ', '', $title);
+        $title = str_replace('Request for Comments: ', '', $title);
 
         $status = '';
-        $statusNodes = $crawler->filter('h1.sectionedit1 + div.level1 > ul > li')
+        $statusNodes = $crawler->filter('.sectionedit1 + div > ul > li')
             ->reduce(function (Crawler $node) {
                 return str_contains($node->text(), 'Status:');
             });
