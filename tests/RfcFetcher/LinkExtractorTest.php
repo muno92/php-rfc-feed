@@ -46,5 +46,17 @@ class LinkExtractorTest extends TestCase
         yield 'Implemented (PHP5.3)' => [
             new Link('Closures', 'https://wiki.php.net/rfc/closures'),
         ];
+        yield 'Declined' => [
+            new Link('Nested Classes', 'https://wiki.php.net/rfc/short-and-inner-classes'),
+        ];
+        yield 'Withdrawn' => [
+            new Link('Change behaviour of array sort functions to return a copy of the sorted array', 'https://wiki.php.net/rfc/array-sort-return-array'),
+        ];
+        yield 'Inactive' => [
+            new Link('Clone with', 'https://wiki.php.net/rfc/clone_with'),
+        ];
+        yield 'Obsolete' => [
+            new Link('Property write/set visibility', 'https://wiki.php.net/rfc/property_write_visibility'),
+        ];
     }
 }

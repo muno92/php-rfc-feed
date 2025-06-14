@@ -27,6 +27,10 @@ final class LinkExtractor
         $processAndPolicyRfcs = $crawler->filter('#process_and_policy + div a')->each($converter);
         $pendingImplementationLanding = $crawler->filter('#pending_implementationlanding + div a')->each($converter);
         $implemented = $crawler->filter('h3[id^="php_"] + div a')->each($converter);
+        $declined = $crawler->filter('#declined + div a')->each($converter);
+        $withdrawn = $crawler->filter('#withdrawn + div a')->each($converter);
+        $inactive = $crawler->filter('#inactive + div a')->each($converter);
+        $obsolete = $crawler->filter('#obsolete + div a')->each($converter);
 
         return [
             ...$votingRfcs,
@@ -35,6 +39,10 @@ final class LinkExtractor
             ...$processAndPolicyRfcs,
             ...$pendingImplementationLanding,
             ...$implemented,
+            ...$declined,
+            ...$withdrawn,
+            ...$inactive,
+            ...$obsolete,
         ];
     }
 }
