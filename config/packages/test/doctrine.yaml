@@ -1,0 +1,5 @@
+doctrine:
+    dbal:
+        # Use an in-memory SQLite database for testing
+        url: "sqlite:///:memory:"
+        driver: pdo_sqlite
