@@ -19,6 +19,7 @@ class RfcFixtures extends Fixture
         $rfc1 = new Rfc();
         $rfc1->setTitle('Example RFC');
         $rfc1->setUrl('https://wiki.php.net/rfc/example');
+        $rfc1->setVersion('1.0');
         
         $manager->persist($rfc1);
         $this->addReference(self::RFC_EXAMPLE, $rfc1);
@@ -27,6 +28,7 @@ class RfcFixtures extends Fixture
         $rfc2 = new Rfc();
         $rfc2->setTitle('Example RFC 2');
         $rfc2->setUrl('https://wiki.php.net/rfc/example2');
+        $rfc2->setVersion('1.0');
         
         $activity2 = new Activity();
         $activity2->setStatus('Under Discussion');
@@ -42,6 +44,7 @@ class RfcFixtures extends Fixture
         $rfc3 = new Rfc();
         $rfc3->setTitle('Example RFC 3');
         $rfc3->setUrl('https://wiki.php.net/rfc/example3');
+        $rfc3->setVersion('1.0');
         
         $activity3 = new Activity();
         $activity3->setStatus('Under Discussion');

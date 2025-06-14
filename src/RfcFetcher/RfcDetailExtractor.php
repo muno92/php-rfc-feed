@@ -30,11 +30,23 @@ final class RfcDetailExtractor
             $status = $matches[1] ?? '';
         }
 
+        $version = '';
+        $versionNodes = $crawler->filter('.sectionedit1 + div > ul > li')
+            ->reduce(function (Crawler $node) {
+                return str_contains($node->text(), 'Version:');
+            });
+
+        if ($versionNodes->count() > 0) {
+            $text = $versionNodes->first()->text();
+            preg_match('/Version:\s*(.+)/', $text, $matches);
+            $version = $matches[1] ?? '';
+        }
+
         $rfcInfo = $crawler->filter('div.docInfo')->text();
         preg_match('/Last modified: (\d{4}\/\d{2}\/\d{2} \d{2}:\d{2})/', $rfcInfo, $matches);
 
         $lastUpdated = new \DateTimeImmutable($matches[1] ?? 'now');
 
-        return new RfcDetail($title, $status, $lastUpdated);
+        return new RfcDetail($title, $status, $lastUpdated, $version);
     }
 }

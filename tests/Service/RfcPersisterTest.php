@@ -54,7 +54,7 @@ class RfcPersisterTest extends KernelTestCase
     {
         // Create new RFC detail - using Example 1 from fixtures
         $url = 'https://wiki.php.net/rfc/example';
-        $rfcDetail = new RfcDetail('Example RFC', 'Under Discussion', new \DateTimeImmutable());
+        $rfcDetail = new RfcDetail('Example RFC', 'Under Discussion', new \DateTimeImmutable(), '1.0');
         
         // Save RFC
         $activity = $this->persister->saveRfc($url, $rfcDetail);
@@ -80,7 +80,7 @@ class RfcPersisterTest extends KernelTestCase
         $url = 'https://wiki.php.net/rfc/example2';
         
         // Update with new status
-        $updatedRfcDetail = new RfcDetail('Example RFC 2', 'Implemented', new \DateTimeImmutable());
+        $updatedRfcDetail = new RfcDetail('Example RFC 2', 'Implemented', new \DateTimeImmutable(), '1.0');
         $activity = $this->persister->saveRfc($url, $updatedRfcDetail);
         
         // Assertions
@@ -108,7 +108,7 @@ class RfcPersisterTest extends KernelTestCase
         $url = 'https://wiki.php.net/rfc/example3';
         
         // Try to update with the same status
-        $sameStatusDetail = new RfcDetail('Example RFC 3', 'Under Discussion', new \DateTimeImmutable());
+        $sameStatusDetail = new RfcDetail('Example RFC 3', 'Under Discussion', new \DateTimeImmutable(), '1.0');
         $activity = $this->persister->saveRfc($url, $sameStatusDetail);
         
         // Should not create a new activity

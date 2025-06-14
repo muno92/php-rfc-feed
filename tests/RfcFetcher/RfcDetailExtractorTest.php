@@ -35,7 +35,8 @@ class RfcDetailExtractorTest extends TestCase
             new RfcDetail(
                 'num_available_processors',
                 'Under Discussion',
-                new \DateTimeImmutable('2025/05/24 17:36')
+                new \DateTimeImmutable('2025/05/24 17:36'),
+                '0.1'
             )
         ];
         yield 'str_icontains' => [
@@ -43,7 +44,8 @@ class RfcDetailExtractorTest extends TestCase
             new RfcDetail(
                 'str_icontains',
                 'In Draft',
-                new \DateTimeImmutable('2025/06/13 08:39')
+                new \DateTimeImmutable('2025/06/13 08:39'),
+                '0.1'
             )
         ];
         yield 'clone_with_v2' => [
@@ -51,7 +53,8 @@ class RfcDetailExtractorTest extends TestCase
             new RfcDetail(
                 'Clone with v2',
                 'Voting',
-                new \DateTimeImmutable('2025/06/04 15:08')
+                new \DateTimeImmutable('2025/06/04 15:08'),
+                '1.1'
             )
         ];
         yield 'attributes-on-constants' => [
@@ -59,7 +62,8 @@ class RfcDetailExtractorTest extends TestCase
             new RfcDetail(
                 'Attributes on Constants',
                 'Implemented',
-                new \DateTimeImmutable('2025/04/29 19:52')
+                new \DateTimeImmutable('2025/04/29 19:52'),
+                '0.2'
             )
         ];
         yield 'deprecations_php_8_4' => [
@@ -67,7 +71,8 @@ class RfcDetailExtractorTest extends TestCase
             new RfcDetail(
                 'Deprecations for PHP 8.4',
                 'Pending Implementation',
-                new \DateTimeImmutable('2025/04/03 13:08')
+                new \DateTimeImmutable('2025/04/03 13:08'),
+                ''
             )
         ];
         yield 'short-and-inner-classes' => [
@@ -75,7 +80,8 @@ class RfcDetailExtractorTest extends TestCase
             new RfcDetail(
                 'Nested Classes',
                 'Declined',
-                new \DateTimeImmutable('2025/05/18 12:53')
+                new \DateTimeImmutable('2025/05/18 12:53'),
+                '0.5'
             )
         ];
         yield 'array-sort-return-array' => [
@@ -83,7 +89,8 @@ class RfcDetailExtractorTest extends TestCase
             new RfcDetail(
                 'Change behaviour of array sort functions to return a copy of the sorted array',
                 'Withdrawn',
-                new \DateTimeImmutable('2025/04/03 13:08')
+                new \DateTimeImmutable('2025/04/03 13:08'),
+                '0.1'
             )
         ];
         yield 'property_write_visibility' => [
@@ -91,7 +98,8 @@ class RfcDetailExtractorTest extends TestCase
             new RfcDetail(
                 'Property write/set visibility',
                 'Obsolete',
-                new \DateTimeImmutable('2025/04/03 13:08')
+                new \DateTimeImmutable('2025/04/03 13:08'),
+                '0.4.6'
             )
         ];
         yield 'phpvcs' => [
@@ -99,7 +107,8 @@ class RfcDetailExtractorTest extends TestCase
             new RfcDetail(
                 "Move PHP's source code and docs to something that isn't CVS",
                 'Accepted',
-                new \DateTimeImmutable('2025/04/03 13:08')
+                new \DateTimeImmutable('2025/04/03 13:08'),
+                '0.0.1'
             )
         ];
     }

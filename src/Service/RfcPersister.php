@@ -29,6 +29,7 @@ class RfcPersister
             $rfc = new Rfc();
             $rfc->setUrl($url);
             $rfc->setTitle($rfcDetail->title);
+            $rfc->setVersion($rfcDetail->version);
             $isNewRfc = true;
         }
 

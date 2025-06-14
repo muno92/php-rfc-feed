@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: RfcRepository::class)]
+#[ORM\UniqueConstraint(name: 'UNIQ_TITLE_VERSION', columns: ['title', 'version'])]
 class Rfc
 {
     #[ORM\Id]
@@ -16,11 +17,14 @@ class Rfc
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255, unique: true)]
+    #[ORM\Column(length: 255)]
     private ?string $title = null;
 
     #[ORM\Column(length: 255, unique: true)]
     private ?string $url = null;
+
+    #[ORM\Column(length: 50)]
+    private ?string $version = null;
 
     #[ORM\OneToMany(mappedBy: 'rfc', targetEntity: Activity::class, cascade: ['persist'], orphanRemoval: true)]
     private Collection $activities;
@@ -55,6 +59,18 @@ class Rfc
     public function setUrl(string $url): static
     {
         $this->url = $url;
+
+        return $this;
+    }
+
+    public function getVersion(): ?string
+    {
+        return $this->version;
+    }
+
+    public function setVersion(string $version): static
+    {
+        $this->version = $version;
 
         return $this;
     }
