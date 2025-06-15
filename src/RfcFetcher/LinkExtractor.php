@@ -44,6 +44,10 @@ final class LinkExtractor
             ...$inactive,
             ...$obsolete,
         ], function (Link $link) use ($host) {
+            // This rfc is empty (TBW).
+            if ($link->url === "{$host}/rfc/extensionsiberia") {
+                return false;
+            }
             // Filter out links that are not RFC detail pages
             // (e.g., external links or other wiki pages)
             return str_starts_with($link->url, "{$host}/rfc/");
