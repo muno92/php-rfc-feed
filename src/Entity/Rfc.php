@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Common\Collections\Order;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 
 #[ORM\Entity(repositoryClass: RfcRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_TITLE_VERSION', columns: ['title', 'version'])]
@@ -28,7 +29,7 @@ class Rfc
     private ?string $version = null;
 
     #[ORM\OneToMany(mappedBy: 'rfc', targetEntity: Activity::class, cascade: ['persist'], orphanRemoval: true)]
-    private Collection $activities;
+    private ArrayCollection|PersistentCollection $activities;
 
     public function __construct()
     {
