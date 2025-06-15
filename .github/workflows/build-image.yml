@@ -4,6 +4,13 @@ on:
   push:
     branches:
       - master
+    paths:
+      - 'src/**'
+      - 'config/**'
+      - 'composer.json'
+      - 'composer.lock'
+      - 'Dockerfile'
+      - 'compose.yml'
 
 env:
   REGISTRY: ghcr.io
