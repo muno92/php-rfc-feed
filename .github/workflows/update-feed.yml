@@ -28,10 +28,12 @@ jobs:
 
       - name: Run crawling and DB update
         run: php bin/console app:fetch-rfcs
+        working-directory: /app
 
       - name: Check for database changes
         id: check_changes
         run: |
+          cp /app/data/production.db data/production.db
           if git diff --quiet data/production.db; then
             echo "has_changes=false" >> "$GITHUB_OUTPUT"
           else
@@ -77,6 +79,7 @@ jobs:
 
       - name: Generate feed
         run: php bin/console rfc:generate-feed -o dist/feed.xml
+        working-directory: /app
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
