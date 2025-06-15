@@ -9,5 +9,6 @@ final readonly class RfcDetail
         public string $status,
         public \DateTimeImmutable $lastUpdated,
         public string $version
-    ) {}
+    ) {
+    }
 }

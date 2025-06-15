@@ -2,8 +2,8 @@
 
 namespace App\Tests\RfcFetcher;
 
-use App\RfcFetcher\LinkExtractor;
 use App\RfcFetcher\Entity\Link;
+use App\RfcFetcher\LinkExtractor;
 use Generator;
 use PHPUnit\Framework\TestCase;
 

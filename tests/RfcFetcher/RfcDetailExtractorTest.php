@@ -2,10 +2,10 @@
 
 namespace App\Tests\RfcFetcher;
 
-use App\RfcFetcher\RfcDetailExtractor;
 use App\RfcFetcher\Entity\RfcDetail;
-use PHPUnit\Framework\TestCase;
+use App\RfcFetcher\RfcDetailExtractor;
 use Generator;
+use PHPUnit\Framework\TestCase;
 
 class RfcDetailExtractorTest extends TestCase
 {

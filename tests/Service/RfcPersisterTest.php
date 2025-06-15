@@ -97,7 +97,7 @@ class RfcPersisterTest extends KernelTestCase
         
         // Convert collection to array for easier testing
         $activityArray = $activities->toArray();
-        $statuses = array_map(fn($a) => $a->getStatus(), $activityArray);
+        $statuses = array_map(fn ($a) => $a->getStatus(), $activityArray);
         $this->assertContains('Under Discussion', $statuses);
         $this->assertContains('Implemented', $statuses);
     }

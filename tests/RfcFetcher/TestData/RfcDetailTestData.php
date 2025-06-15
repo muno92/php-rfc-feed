@@ -7,5 +7,6 @@ final readonly class RfcDetailTestData
     public function __construct(
         public string $filename,
         public \App\RfcFetcher\Entity\RfcDetail $rfcDetail
-    ) {}
+    ) {
+    }
 }
