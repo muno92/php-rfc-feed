@@ -23,22 +23,8 @@ jobs:
       packages: read
 
     steps:
-      - name: Debug
-        run: |
-          echo "Current directory: $(pwd)"
-          echo "Files in repository:"
-          ls -la
-          ls -la /app
-
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Debug
-        run: |
-          echo "Current directory: $(pwd)"
-          echo "Files in repository:"
-          ls -la
-            ls -la /app
 
       - name: Run crawling and DB update
         run: php bin/console app:fetch-rfcs
