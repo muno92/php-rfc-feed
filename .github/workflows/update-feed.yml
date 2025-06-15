@@ -28,6 +28,7 @@ jobs:
           echo "Current directory: $(pwd)"
           echo "Files in repository:"
           ls -la
+          ls -la /app
 
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -37,6 +38,7 @@ jobs:
           echo "Current directory: $(pwd)"
           echo "Files in repository:"
           ls -la
+            ls -la /app
 
       - name: Run crawling and DB update
         run: php bin/console app:fetch-rfcs
