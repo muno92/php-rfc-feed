@@ -1,0 +1,90 @@
+name: Update Feed
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # Run every hour
+  workflow_dispatch:  # Allow manual trigger
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  fetch-rfc:
+    runs-on: ubuntu-latest
+    container: 
+      image: ghcr.io/${{ github.repository }}:master
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    permissions:
+      contents: write
+      pull-requests: write
+      packages: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run crawling and DB update
+        run: php bin/console app:fetch-rfcs
+
+      - name: Check for database changes
+        id: check_changes
+        run: |
+          if git diff --quiet data/production.db; then
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create Pull Request for DB updates
+        if: steps.check_changes.outputs.has_changes == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          BRANCH_NAME="automated-db-update-$(date +'%Y%m%d-%H%M%S')"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH_NAME"
+          git add data/production.db
+          git commit -m "Update RFC database with latest changes"
+          git push origin "$BRANCH_NAME"
+          gh pr create --title "Automated RFC Database Update" \
+            --body "This PR contains automated updates to the RFC database. Changes detected in the RFC status or new RFCs have been added to the database." \
+            --head "$BRANCH_NAME" --base master
+
+  update-rfc-feed:
+    runs-on: ubuntu-latest
+    needs: fetch-rfc
+    container: 
+      image: ghcr.io/${{ github.repository }}:master
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+      packages: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create dist directory
+        run: mkdir -p dist
+
+      - name: Generate feed
+        run: php bin/console rfc:generate-feed -o dist/feed.xml
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
