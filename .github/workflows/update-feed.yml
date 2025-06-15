@@ -26,9 +26,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Debug
-        run: ls -al
-
       - name: Run crawling and DB update
         run: php bin/console app:fetch-rfcs
 
