@@ -1,0 +1,13 @@
+services:
+  app:
+    build:
+      context: .
+      target: production
+    volumes:
+      - .:/app
+    working_dir: /app
+    environment:
+      - APP_ENV=dev
+    stdin_open: true
+    tty: true
+
