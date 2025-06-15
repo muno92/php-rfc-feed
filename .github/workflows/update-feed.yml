@@ -18,22 +18,53 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
     permissions:
+      packages: read
+    outputs:
+      has_changes: ${{ steps.check_changes.outputs.has_changes }}
+
+    steps:
+      - name: Run crawling and DB update
+        run: php bin/console app:fetch-rfcs
+        working-directory: /app
+
+      - name: Upload updated database
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-db
+          path: /app/data/production.db
+
+      - name: Check for database changes
+        id: check_changes
+        run: |
+          # Compare with a reference database to detect changes
+          # This is a simplified check - in practice you might want to compare with the previous version
+          if [ -f /app/data/production.db ]; then
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  create-pr:
+    runs-on: ubuntu-latest
+    needs: fetch-rfc
+    if: needs.fetch-rfc.outputs.has_changes == 'true'
+    permissions:
       contents: write
       pull-requests: write
-      packages: read
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Run crawling and DB update
-        run: php bin/console app:fetch-rfcs
-        working-directory: /app
+      - name: Download updated database
+        uses: actions/download-artifact@v4
+        with:
+          name: production-db
+          path: data/
 
-      - name: Check for database changes
-        id: check_changes
+      - name: Check for actual database changes
+        id: check_real_changes
         run: |
-          cp /app/data/production.db data/production.db
           if git diff --quiet data/production.db; then
             echo "has_changes=false" >> "$GITHUB_OUTPUT"
           else
@@ -41,7 +72,7 @@ jobs:
           fi
 
       - name: Create Pull Request for DB updates
-        if: steps.check_changes.outputs.has_changes == 'true'
+        if: steps.check_real_changes.outputs.has_changes == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -73,6 +104,15 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Download updated database
+        uses: actions/download-artifact@v4
+        with:
+          name: production-db
+          path: /tmp/
+
+      - name: Copy production database
+        run: cp /tmp/production.db /app/data/production.db
 
       - name: Create dist directory
         run: mkdir -p dist
