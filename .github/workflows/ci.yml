@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: 8.4
+        extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite
+        coverage: xdebug
+
+    - name: Cache Composer packages
+      id: composer-cache
+      uses: actions/cache@v3
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress
+
+    - name: Run ECS (Easy Coding Standard)
+      run: vendor/bin/ecs check
+
+    - name: Run PHPStan
+      run: vendor/bin/phpstan analyse
+
+    - name: Run PHPUnit tests
+      run: php bin/phpunit --coverage-text
