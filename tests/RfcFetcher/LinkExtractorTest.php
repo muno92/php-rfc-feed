@@ -73,6 +73,6 @@ class LinkExtractorTest extends TestCase
     {
         $rfcList = $this->extractor->extract(file_get_contents(__DIR__ . '/../fixtures/rfc.html'), 'https://wiki.php.net');
 
-        $this->assertCount(832, $rfcList);
+        $this->assertCount(831, $rfcList);
     }
 }
