@@ -40,11 +40,13 @@ class ActivityRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return Activity[] Returns an array of latest Activity objects
+     * @return Activity[] Returns an array of latest Activity objects with RFC data
      */
-    public function findLatest(int $limit = 10): array
+    public function findLatestActivities(int $limit = 10): array
     {
         return $this->createQueryBuilder('a')
+            ->join('a.rfc', 'r')
+            ->addSelect('r')
             ->orderBy('a.createdAt', 'DESC')
             ->setMaxResults($limit)
             ->getQuery()
