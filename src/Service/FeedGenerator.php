@@ -89,7 +89,13 @@ class FeedGenerator
         $entry->appendChild($dom->createElement('id', $rfc->getUrl()));
         $entry->appendChild($dom->createElement('updated', $activity->getCreatedAt()->format(\DateTimeInterface::ATOM)));
         $entry->appendChild($dom->createElement('published', $activity->getCreatedAt()->format(\DateTimeInterface::ATOM)));
-        
+
+        // add url to summary
+        $summary = $dom->createElement('summary');
+        $summary->setAttribute('type', 'html');
+        $summary->appendChild($dom->createTextNode($rfc->getUrl()));
+        $entry->appendChild($summary);
+
         return $entry;
     }
 }
