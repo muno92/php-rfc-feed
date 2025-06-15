@@ -115,7 +115,7 @@ jobs:
         run: cp /tmp/production.db /app/data/production.db
 
       - name: Create dist directory
-        run: mkdir -p dist
+        run: mkdir -p /app/dist
 
       - name: Generate feed
         run: php bin/console rfc:generate-feed -o dist/feed.xml
@@ -127,7 +127,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: /app/dist
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
