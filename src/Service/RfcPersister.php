@@ -41,6 +41,7 @@ class RfcPersister
         if ($statusChanged) {
             $activity = new Activity();
             $activity->setStatus($rfcDetail->status);
+            $activity->setCreatedAt($rfcDetail->lastUpdated);
             $rfc->addActivity($activity);
             
             $this->entityManager->persist($rfc);
