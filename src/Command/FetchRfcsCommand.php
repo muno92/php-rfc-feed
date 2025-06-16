@@ -62,6 +62,7 @@ class FetchRfcsCommand extends Command
                     
                     if ($activity !== null) {
                         $newOrUpdatedRfcs++;
+                        $io->info(sprintf('%s is new or updated', $link->title));
                     }
                     
                     $io->progressAdvance();
