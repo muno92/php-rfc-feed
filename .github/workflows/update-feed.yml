@@ -19,25 +19,14 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
     permissions:
       packages: read
-    outputs:
-      has_changes: ${{ steps.check_changes.outputs.has_changes }}
 
     steps:
       - name: Run crawling and DB update
         run: php bin/console app:fetch-rfcs
         working-directory: /app
 
-      - name: Check for database changes
-        id: check_changes
-        run: |
-          if git diff --quiet /app/data/production.db; then
-            echo "has_changes=false" >> "$GITHUB_OUTPUT"
-          else
-            echo "has_changes=true" >> "$GITHUB_OUTPUT"
-          fi
-
+      # Git is not available in the container, so this job only uploads the database file.
       - name: Upload updated database
-        if: steps.check_changes.outputs.has_changes == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: production-db
@@ -46,7 +35,8 @@ jobs:
   update-db:
     runs-on: ubuntu-latest
     needs: fetch-rfc
-    if: needs.fetch-rfc.outputs.has_changes == 'true'
+    outputs:
+      has_changes: ${{ steps.check_real_changes.outputs.has_changes }}
 
     steps:
       - name: Generate a token
@@ -68,7 +58,17 @@ jobs:
           name: production-db
           path: data/
 
+      - name: Check for actual database changes
+        id: check_real_changes
+        run: |
+          if git diff --quiet data/production.db; then
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Commit and push changes
+        if: steps.check_real_changes.outputs.has_changes == 'true'
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
@@ -79,7 +79,7 @@ jobs:
   update-rfc-feed:
     runs-on: ubuntu-latest
     needs: update-db
-    if: needs.fetch-rfc.outputs.has_changes == 'true'
+    if: needs.update-db.outputs.has_changes == 'true'
     container: 
       image: ghcr.io/${{ github.repository }}:master
       credentials:
@@ -94,6 +94,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Debug
+        run: |
+          echo "Current directory: $(pwd)"
+          echo "Contents of /app/data:"
+          ls -la /app/data
+          echo "Contents of /app/dist:"
+          ls -la /app/dist
 
       - name: Copy production database
         run: cp production.db /app/data/production.db
