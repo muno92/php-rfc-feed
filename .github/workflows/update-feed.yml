@@ -91,12 +91,29 @@ jobs:
       - name: Copy production database
         run: cp data/production.db /app/data/production.db
 
-      - name: Create dist directory
-        run: mkdir -p /app/dist
-
       - name: Generate feed
-        run: php bin/console rfc:generate-feed -o dist/feed.xml
+        run: php bin/console rfc:generate-feed -o feed.xml
         working-directory: /app
+
+      - name: Upload feed
+        uses: actions/upload-artifact@v4
+        with:
+          name: rfc-feed
+          path: /app/feed.xml
+
+  deploy-feed:
+    runs-on: ubuntu-latest
+    needs: update-rfc-feed
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download updated database
+        uses: actions/download-artifact@v4
+        with:
+          name: rfc-feed
+          path: dist/
 
       - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
