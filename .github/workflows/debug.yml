@@ -1,0 +1,20 @@
+name: Debug
+on:
+  push:
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/${{ github.repository }}:master
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Debug
+        run: |
+          echo "Current directory: $(pwd)"
+          ls -la
