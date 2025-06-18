@@ -17,8 +17,6 @@ jobs:
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-    permissions:
-      packages: read
 
     steps:
       - name: Run crawling and DB update
@@ -85,11 +83,6 @@ jobs:
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-      packages: read
 
     steps:
       - name: Checkout repository
@@ -105,13 +98,8 @@ jobs:
         run: php bin/console rfc:generate-feed -o dist/feed.xml
         working-directory: /app
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy to Cloudflare Workers
+        uses: cloudflare/wrangler-action@v3
         with:
-          path: /app/dist
-
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          apiToken: ${{ secrets.CLOUDFLARE_WORKERS_TOKEN }}
