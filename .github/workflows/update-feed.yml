@@ -93,8 +93,11 @@ jobs:
       - name: Copy production database
         run: cp data/production.db /app/data/production.db
 
+      - name: Create dist directory
+        run: mkdir -p /app/dist
+
       - name: Generate feed
-        run: php bin/console rfc:generate-feed -o feed.xml
+        run: php bin/console rfc:generate-feed -o /app/dist/feed.xml
         working-directory: /app
 
       - name: Setup Pages
