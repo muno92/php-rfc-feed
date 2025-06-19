@@ -83,7 +83,7 @@ jobs:
 
     permissions:
       contents: read
-      id-token: read
+      id-token: write
       packages: read
       pages: write
 
