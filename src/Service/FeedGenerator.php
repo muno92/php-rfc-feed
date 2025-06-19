@@ -14,7 +14,7 @@ class FeedGenerator
     private const FEED_AUTHOR = 'muno92';
     private const GITHUB_REPO = 'https://github.com/muno92/php-rfc-feed';
 
-    private const FEED_URL = 'https://muno92.github.io/php-rfc-feed/feed.xml';
+    private const FEED_URL = 'https://php-rfc-feed.muno92.dev/feed.xml';
 
     public function __construct(
         private readonly ActivityRepository $activityRepository
