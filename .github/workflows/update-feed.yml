@@ -20,7 +20,7 @@ jobs:
 
     steps:
       - name: Run crawling and DB update
-        run: php bin/console app:fetch-rfcs
+        run: php bin/console rfc:fetch
         working-directory: /app
 
       # Git is not available in the container, so this job only uploads the database file.

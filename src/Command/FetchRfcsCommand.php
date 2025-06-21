@@ -13,7 +13,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 #[AsCommand(
-    name: 'app:fetch-rfcs',
+    name: 'rfc:fetch',
     description: 'Fetch and store PHP RFCs',
 )]
 class FetchRfcsCommand extends Command
