@@ -86,7 +86,7 @@ class FeedGenerator
         $link->setAttribute('type', 'text/html');
         $entry->appendChild($link);
         
-        $entry->appendChild($dom->createElement('id', $rfc->getUrl()));
+        $entry->appendChild($dom->createElement('id', $rfc->getUrl() . '#' . urlencode($activity->getStatus())));
         $entry->appendChild($dom->createElement('updated', $activity->getCreatedAt()->format(\DateTimeInterface::ATOM)));
         $entry->appendChild($dom->createElement('published', $activity->getCreatedAt()->format(\DateTimeInterface::ATOM)));
 
