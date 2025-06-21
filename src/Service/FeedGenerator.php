@@ -92,7 +92,6 @@ class FeedGenerator
 
         // add url to summary
         $summary = $dom->createElement('summary');
-        $summary->setAttribute('type', 'html');
         $summary->appendChild($dom->createTextNode($rfc->getUrl()));
         $entry->appendChild($summary);
 
