@@ -12,7 +12,7 @@ This application monitors the https://wiki.php.net/rfc and generates an Atom fee
 
 ### Requirements
 
-- PHP 8.2 or higher
+- PHP 8.4
 - Composer
 - Docker
 - Docker Compose
