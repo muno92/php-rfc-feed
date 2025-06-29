@@ -107,6 +107,11 @@ class RfcPersisterTest extends KernelTestCase
         // Using Example 3 from fixtures which already has an 'Under Discussion' status
         $url = 'https://wiki.php.net/rfc/example3';
         
+        // Get the original activity's created_at timestamp
+        $originalRfc = $this->rfcRepository->findOneByUrl($url);
+        $originalActivity = $originalRfc->getActivities()->first();
+        $originalCreatedAt = $originalActivity->getCreatedAt();
+        
         // Try to update with the same status
         $sameStatusDetail = new RfcDetail('Example RFC 3', 'Under Discussion', new \DateTimeImmutable(), '1.0');
         $activity = $this->persister->saveRfc($url, $sameStatusDetail);
@@ -118,6 +123,10 @@ class RfcPersisterTest extends KernelTestCase
         $savedRfc = $this->rfcRepository->findOneByUrl($url);
         $this->assertNotNull($savedRfc);
         $this->assertCount(1, $savedRfc->getActivities());
+        
+        // Verify that the created_at timestamp hasn't changed
+        $updatedActivity = $savedRfc->getActivities()->first();
+        $this->assertEquals($originalCreatedAt, $updatedActivity->getCreatedAt());
     }
     
     protected function tearDown(): void
