@@ -19,18 +19,11 @@ This application monitors the https://wiki.php.net/rfc and generates an Atom fee
 
 ### Setup
 
--  Clone the repository:
-
-  ```bash
-  git clone https://github.com/muno92/php-rfc-feed.git
-  cd php-rfc-feed
-  ```
-
--  Install dependencies:
-
-  ```bash
-  composer install
-  ```
+```bash
+git clone https://github.com/muno92/php-rfc-feed.git
+cd php-rfc-feed
+composer install
+```
 
 ### Testing
 
