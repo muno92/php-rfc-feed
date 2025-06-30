@@ -33,24 +33,38 @@ class RfcPersister
             $isNewRfc = true;
         }
 
-        // Check if the status has changed
         $latestActivity = $rfc->getLatestActivity();
-        $statusChanged = $isNewRfc || $latestActivity === null || $latestActivity->getStatus() !== $rfcDetail->status;
 
-        // Only create a new activity if it's a new RFC or the status has changed
-        if ($statusChanged) {
+        if ($this->rfcStatusIsChanged($isNewRfc, $latestActivity, $rfcDetail)) {
             $activity = new Activity();
             $activity->setStatus($rfcDetail->status);
             $activity->setCreatedAt($rfcDetail->lastUpdated);
             $rfc->addActivity($activity);
-            
+
             $this->entityManager->persist($rfc);
             $this->entityManager->persist($activity);
             $this->entityManager->flush();
-            
+
             return $activity;
         }
 
         return null;
+    }
+
+    /**
+     * @param bool $isNewRfc
+     * @param Activity|null $latestActivity
+     * @param RfcDetail $rfcDetail
+     * @return bool
+     */
+    private function rfcStatusIsChanged(bool $isNewRfc, ?Activity $latestActivity, RfcDetail $rfcDetail): bool
+    {
+        if ($isNewRfc) {
+            return true;
+        }
+        if ($latestActivity?->getStatus() === $rfcDetail->status) {
+            return false;
+        }
+        return true;
     }
 }
