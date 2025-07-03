@@ -12,13 +12,22 @@ env:
 jobs:
   fetch-rfc:
     runs-on: ubuntu-latest
-    container: 
+    container:
       image: ghcr.io/${{ github.repository }}:master
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Copy the latest database to the container.
+      # Without this, the RFC will be notified twice when only its content is updated but the status remains unchanged.
+      # Because the container is built from the latest src commit, it does not have the latest database.
+      - name: Copy production database
+        run: cp data/production.db /app/data/production.db
+
       - name: Run crawling and DB update
         run: php bin/console rfc:fetch
         working-directory: /app
@@ -41,7 +50,7 @@ jobs:
         with:
           app-id: ${{ secrets.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
-    
+
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
@@ -75,7 +84,7 @@ jobs:
   generate-rfc-feed:
     runs-on: ubuntu-latest
     needs: update-db
-    container: 
+    container:
       image: ghcr.io/${{ github.repository }}:master
       credentials:
         username: ${{ github.actor }}
