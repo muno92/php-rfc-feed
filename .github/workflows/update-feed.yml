@@ -23,8 +23,8 @@ jobs:
         uses: actions/checkout@v4
 
       # Copy the latest database to the container.
-      # Without this, the RFC will be notified twice when only its content is updated but the status remains unchanged.
       # Because the container is built from the latest src commit, it does not have the latest database.
+      # Using the old database causes several bugs.
       - name: Copy production database
         run: cp data/production.db /app/data/production.db
 
