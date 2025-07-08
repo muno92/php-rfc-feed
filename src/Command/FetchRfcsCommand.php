@@ -2,6 +2,7 @@
 
 namespace App\Command;
 
+use App\Repository\RfcRepository;
 use App\RfcFetcher\LinkExtractor;
 use App\RfcFetcher\RfcDetailExtractor;
 use App\Service\RfcPersister;
@@ -25,6 +26,7 @@ class FetchRfcsCommand extends Command
         private readonly LinkExtractor $linkExtractor,
         private readonly RfcDetailExtractor $rfcDetailExtractor,
         private readonly RfcPersister $rfcPersister,
+        private readonly RfcRepository $rfcRepository,
         private readonly HttpClientInterface $httpClient,
     ) {
         parent::__construct();
@@ -42,29 +44,36 @@ class FetchRfcsCommand extends Command
             $response = $this->httpClient->request('GET', $rfcListUrl);
             $html = $response->getContent();
             $links = $this->linkExtractor->extract($html, self::RFC_HOST);
-            
+
             $io->info(sprintf('Found %d RFCs', count($links)));
-            
+
             // Fetch details for each RFC
             $io->section('Fetching RFC details');
             $io->progressStart(count($links));
-            
+
             $newOrUpdatedRfcs = 0;
-            
+
             foreach ($links as $link) {
                 try {
+                    $existingRfc = $this->rfcRepository->findOneByUrl($link->url);
+                    if ($existingRfc && $existingRfc->statusIsConfirmed()) {
+                        $io->info(sprintf('Skipping %s (status: %s)', $link->title, $existingRfc->getLatestActivity()->getStatus()));
+                        $io->progressAdvance();
+                        continue;
+                    }
+
                     $response = $this->httpClient->request('GET', $link->url);
                     $html = $response->getContent();
                     $rfcDetail = $this->rfcDetailExtractor->extract($html);
-                    
+
                     // Save to database
                     $activity = $this->rfcPersister->saveRfc($link->url, $rfcDetail);
-                    
+
                     if ($activity !== null) {
                         $newOrUpdatedRfcs++;
                         $io->info(sprintf('%s is new or updated', $link->title));
                     }
-                    
+
                     $io->progressAdvance();
                 } catch (\Exception $e) {
                     $io->warning(sprintf(
@@ -75,11 +84,11 @@ class FetchRfcsCommand extends Command
                     ));
                 }
             }
-            
+
             $io->progressFinish();
-            
+
             $io->success(sprintf('Successfully processed %d RFCs, %d new or updated', count($links), $newOrUpdatedRfcs));
-            
+
             return Command::SUCCESS;
         } catch (\Exception $e) {
             $io->error('Error: ' . $e->getMessage());

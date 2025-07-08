@@ -117,7 +117,18 @@ class Rfc
             ->setMaxResults(1);
 
         $result = $this->activities->matching($criteria);
-        
+
         return $result->isEmpty() ? null : $result->first();
+    }
+
+    public function statusIsConfirmed(): bool
+    {
+        return $this->isImplemented();
+    }
+
+    public function isImplemented(): bool
+    {
+        $latestActivity = $this->getLatestActivity();
+        return $latestActivity !== null && str_contains(strtolower($latestActivity->getStatus()), 'implemented');
     }
 }
