@@ -4,7 +4,7 @@
 
 Unofficial Atom feed for tracking PHP RFC (Request for Comments) updates.
 
-https://muno92.github.io/php-rfc-feed/feed.xml
+https://php-rfc-feed.muno92.dev/feed.xml
 
 This application monitors the https://wiki.php.net/rfc and generates an Atom feed to track status changes of PHP RFCs.
 
