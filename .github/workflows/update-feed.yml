@@ -93,6 +93,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          # When the database is updated, the default ref is older than the latest commit.
+          ref: master
 
       - name: Copy production database
         run: cp data/production.db /app/data/production.db
