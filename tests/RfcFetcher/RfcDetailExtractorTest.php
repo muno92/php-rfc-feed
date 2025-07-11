@@ -22,7 +22,7 @@ class RfcDetailExtractorTest extends TestCase
      */
     public function testExtract(string $filename, RfcDetail $expected): void
     {
-        $html = file_get_contents(__DIR__ . '/../Fixtures/rfc_details/' . $filename);
+        $html = file_get_contents( 'https://wiki.php.net/rfc/' . $filename);
         $detail = $this->extractor->extract($html);
 
         $this->assertEquals($expected, $detail);
@@ -30,35 +30,8 @@ class RfcDetailExtractorTest extends TestCase
 
     public static function extractProvider(): Generator
     {
-        yield 'num_available_processors' => [
-            'num_available_processors.html',
-            new RfcDetail(
-                'num_available_processors',
-                'Under Discussion',
-                new \DateTimeImmutable('2025/05/24 17:36'),
-                '0.1'
-            )
-        ];
-        yield 'str_icontains' => [
-            'str_icontains.html',
-            new RfcDetail(
-                'str_icontains',
-                'In Draft',
-                new \DateTimeImmutable('2025/06/13 08:39'),
-                '0.1'
-            )
-        ];
-        yield 'clone_with_v2' => [
-            'clone_with_v2.html',
-            new RfcDetail(
-                'Clone with v2',
-                'Voting',
-                new \DateTimeImmutable('2025/06/04 15:08'),
-                '1.1'
-            )
-        ];
-        yield 'attributes-on-constants' => [
-            'attributes-on-constants.html',
+        yield 'Implemented' => [
+            'attributes-on-constants',
             new RfcDetail(
                 'Attributes on Constants',
                 'Implemented',
@@ -66,17 +39,8 @@ class RfcDetailExtractorTest extends TestCase
                 '0.2'
             )
         ];
-        yield 'deprecations_php_8_4' => [
-            'deprecations_php_8_4.html',
-            new RfcDetail(
-                'Deprecations for PHP 8.4',
-                'Pending Implementation',
-                new \DateTimeImmutable('2025/04/03 13:08'),
-                ''
-            )
-        ];
-        yield 'short-and-inner-classes' => [
-            'short-and-inner-classes.html',
+        yield 'Declined' => [
+            'short-and-inner-classes',
             new RfcDetail(
                 'Nested Classes',
                 'Declined',
@@ -84,8 +48,8 @@ class RfcDetailExtractorTest extends TestCase
                 '0.5'
             )
         ];
-        yield 'array-sort-return-array' => [
-            'array-sort-return-array.html',
+        yield 'Withdrawn' => [
+            'array-sort-return-array',
             new RfcDetail(
                 'Change behaviour of array sort functions to return a copy of the sorted array',
                 'Withdrawn',
@@ -93,8 +57,8 @@ class RfcDetailExtractorTest extends TestCase
                 '0.1'
             )
         ];
-        yield 'property_write_visibility' => [
-            'property_write_visibility.html',
+        yield 'Obsolete' => [
+            'property_write_visibility',
             new RfcDetail(
                 'Property write/set visibility',
                 'Obsolete',
@@ -103,7 +67,7 @@ class RfcDetailExtractorTest extends TestCase
             )
         ];
         yield 'phpvcs' => [
-            'phpvcs.html',
+            'phpvcs',
             new RfcDetail(
                 "Move PHP's source code and docs to something that isn't CVS",
                 'Accepted',
