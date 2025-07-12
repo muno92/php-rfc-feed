@@ -7,7 +7,7 @@ use Symfony\Component\DomCrawler\Crawler;
 
 final class LinkExtractor
 {
-    const array EXCLUDE_RFCS = [
+    public const array EXCLUDE_RFCS = [
         // This RFC is empty (TBW).
         'extensionsiberia',
     ];
@@ -49,7 +49,7 @@ final class LinkExtractor
             ...$inactive,
             ...$obsolete,
         ], function (Link $link) use ($host) {
-            if (in_array($link->url, array_map(fn($rfc) => "{$host}/rfc/{$rfc}", self::EXCLUDE_RFCS), true)) {
+            if (in_array($link->url, array_map(fn ($rfc) => "{$host}/rfc/{$rfc}", self::EXCLUDE_RFCS), true)) {
                 return false;
             }
             // Filter out links that are not RFC detail pages

@@ -39,15 +39,15 @@ class LinkExtractorTest extends TestCase
             new Link('Property write/set visibility', 'https://wiki.php.net/rfc/property_write_visibility'),
         ];
 
-        $missingLinks = array_filter($expectedLinks, fn($link) => !in_array($link, $rfcList));
-        $this->assertEmpty($missingLinks, 'Expected links not found in RFC list: ' . implode(', ', array_map(fn(Link $link) => $link->title, $missingLinks)));
+        $missingLinks = array_filter($expectedLinks, fn ($link) => !in_array($link, $rfcList));
+        $this->assertEmpty($missingLinks, 'Expected links not found in RFC list: ' . implode(', ', array_map(fn (Link $link) => $link->title, $missingLinks)));
     }
 
     public function testExcludeSpecifiedRfc(): void
     {
         $rfcList = $this->extractor->extract(file_get_contents('https://wiki.php.net/rfc'), 'https://wiki.php.net');
 
-        $extractedUrls = array_map(fn(Link $link) => $link->url, $rfcList);
+        $extractedUrls = array_map(fn (Link $link) => $link->url, $rfcList);
 
         $this->assertFalse(array_all(LinkExtractor::EXCLUDE_RFCS, function ($rfc) use ($extractedUrls) {
             return in_array("https://wiki.php.net/rfc/{$rfc}", $extractedUrls, true);

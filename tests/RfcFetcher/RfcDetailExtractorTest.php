@@ -22,7 +22,7 @@ class RfcDetailExtractorTest extends TestCase
      */
     public function testExtract(string $filename, RfcDetail $expected): void
     {
-        $html = file_get_contents( 'https://wiki.php.net/rfc/' . $filename);
+        $html = file_get_contents('https://wiki.php.net/rfc/' . $filename);
         $detail = $this->extractor->extract($html);
 
         $this->assertEquals($expected, $detail);
