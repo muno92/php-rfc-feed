@@ -1,4 +1,4 @@
-FROM php:8.4-cli AS builder
+FROM php:8.5-cli AS builder
 
 RUN apt update && apt install -y \
     git \
@@ -11,7 +11,7 @@ WORKDIR /app
 COPY composer.json composer.lock ./
 RUN composer install --no-dev --optimize-autoloader --no-scripts --no-interaction
 
-FROM php:8.4-cli AS production
+FROM php:8.5-cli AS production
 
 WORKDIR /app
 
