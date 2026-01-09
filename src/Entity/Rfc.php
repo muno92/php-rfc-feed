@@ -5,8 +5,6 @@ namespace App\Entity;
 use App\Repository\RfcRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\Criteria;
-use Doctrine\Common\Collections\Order;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\PersistentCollection;
 
@@ -112,13 +110,17 @@ class Rfc
      */
     public function getLatestActivity(): ?Activity
     {
-        $criteria = Criteria::create()
-            ->orderBy(['createdAt' => Order::Descending])
-            ->setMaxResults(1);
+        if ($this->activities->isEmpty()) {
+            return null;
+        }
 
-        $result = $this->activities->matching($criteria);
+        $activities = $this->activities->toArray();
 
-        return $result->isEmpty() ? null : $result->first();
+        usort($activities, function (Activity $a, Activity $b) {
+            return $b->getCreatedAt() <=> $a->getCreatedAt();
+        });
+
+        return $activities[0];
     }
 
     public function statusIsConfirmed(): bool
