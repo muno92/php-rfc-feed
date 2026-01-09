@@ -9,7 +9,7 @@
         "ext-iconv": "*",
         "doctrine/dbal": "^4.2.4",
         "doctrine/doctrine-bundle": "^3.0",
-        "doctrine/doctrine-migrations-bundle": "^3.4.2",
+        "doctrine/doctrine-migrations-bundle": "^4.0.0",
         "doctrine/orm": "^3.4",
         "symfony/console": "8.0.*",
         "symfony/dom-crawler": "8.0.*",
