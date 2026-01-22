@@ -62,16 +62,17 @@ class RfcPersisterTest extends KernelTestCase
         // Assertions
         $this->assertInstanceOf(Activity::class, $activity);
         $this->assertEquals('Under Discussion', $activity->getStatus());
-        
+        $this->assertEquals('Example RFC', $activity->getTitle());
+
         // Verify RFC was saved
         $savedRfc = $this->rfcRepository->findOneByUrl($url);
         $this->assertNotNull($savedRfc);
-        $this->assertEquals('Example RFC', $savedRfc->getTitle());
-        
+
         // Verify activity was created
         $activities = $savedRfc->getActivities();
         $this->assertCount(1, $activities);
         $this->assertEquals('Under Discussion', $activities->first()->getStatus());
+        $this->assertEquals('Example RFC', $activities->first()->getTitle());
     }
     
     public function testUpdateExistingRfcWithNewStatus(): void

@@ -75,9 +75,9 @@ class FeedGenerator
     private function createEntryElement(DOMDocument $dom, Activity $activity): DOMElement
     {
         $entry = $dom->createElement('entry');
-        
+
         $rfc = $activity->getRfc();
-        $title = sprintf('[%s] %s', $activity->getStatus(), $rfc->getTitle());
+        $title = sprintf('[%s] %s', $activity->getStatus(), $activity->getTitle());
         $entry->appendChild($dom->createElement('title', htmlspecialchars($title)));
         
         $link = $dom->createElement('link');
