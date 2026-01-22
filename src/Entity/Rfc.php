@@ -9,16 +9,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\PersistentCollection;
 
 #[ORM\Entity(repositoryClass: RfcRepository::class)]
-#[ORM\UniqueConstraint(name: 'UNIQ_TITLE_VERSION', columns: ['title', 'version'])]
 class Rfc
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $title = null;
 
     #[ORM\Column(length: 255, unique: true)]
     private ?string $url = null;
@@ -37,18 +33,6 @@ class Rfc
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getTitle(): ?string
-    {
-        return $this->title;
-    }
-
-    public function setTitle(string $title): static
-    {
-        $this->title = $title;
-
-        return $this;
     }
 
     public function getUrl(): ?string

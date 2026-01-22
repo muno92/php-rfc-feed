@@ -17,6 +17,9 @@ class Activity
     #[ORM\JoinColumn(nullable: false)]
     private ?Rfc $rfc = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $title = null;
+
     #[ORM\Column(length: 50)]
     private ?string $status = null;
 
@@ -41,6 +44,18 @@ class Activity
     public function setRfc(?Rfc $rfc): static
     {
         $this->rfc = $rfc;
+
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(?string $title): static
+    {
+        $this->title = $title;
 
         return $this;
     }

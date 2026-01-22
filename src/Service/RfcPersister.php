@@ -28,7 +28,6 @@ class RfcPersister
         if (!$rfc) {
             $rfc = new Rfc();
             $rfc->setUrl($url);
-            $rfc->setTitle($rfcDetail->title);
             $rfc->setVersion($rfcDetail->version);
             $isNewRfc = true;
         }
@@ -37,6 +36,7 @@ class RfcPersister
 
         if ($this->rfcStatusIsChanged($isNewRfc, $latestActivity, $rfcDetail)) {
             $activity = new Activity();
+            $activity->setTitle($rfcDetail->title);
             $activity->setStatus($rfcDetail->status);
             $activity->setCreatedAt($rfcDetail->lastUpdated);
             $rfc->addActivity($activity);
