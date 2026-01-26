@@ -5,6 +5,7 @@ namespace App\Tests\RfcFetcher;
 use App\RfcFetcher\Entity\RfcDetail;
 use App\RfcFetcher\RfcDetailExtractor;
 use Generator;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class RfcDetailExtractorTest extends TestCase
@@ -17,9 +18,7 @@ class RfcDetailExtractorTest extends TestCase
         parent::setUp();
     }
 
-    /**
-     * @dataProvider extractProvider
-     */
+    #[DataProvider('extractProvider')]
     public function testExtract(string $filename, RfcDetail $expected): void
     {
         $html = file_get_contents('https://wiki.php.net/rfc/' . $filename);
