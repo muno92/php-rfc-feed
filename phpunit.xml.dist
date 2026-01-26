@@ -6,7 +6,6 @@
          backupGlobals="false"
          colors="true"
          bootstrap="tests/bootstrap.php"
-         convertDeprecationsToExceptions="false"
 >
     <php>
         <ini name="display_errors" value="1" />
@@ -23,16 +22,15 @@
         </testsuite>
     </testsuites>
 
-    <coverage processUncoveredFiles="true">
+    <source>
         <include>
-            <directory suffix=".php">src</directory>
+            <directory>src</directory>
         </include>
-    </coverage>
-
-    <listeners>
-        <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener" />
-    </listeners>
+    </source>
 
     <extensions>
+        <bootstrap class="Symfony\Bridge\PhpUnit\SymfonyExtension">
+            <parameter name="clock-mock-namespaces" value="Cache\IntegrationTests,Symfony\Bridge\Doctrine\Middleware\Debug,Symfony\Bridge\Doctrine\Middleware\IdleConnection,Symfony\Component\Cache,Symfony\Component\Cache\Tests\Fixtures,Symfony\Component\Cache\Tests\Traits,Symfony\Component\Cache\Traits,Symfony\Component\Console,Symfony\Component\HttpFoundation,Symfony\Component\Uid" />
+        </bootstrap>
     </extensions>
 </phpunit>
