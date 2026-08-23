@@ -24,7 +24,7 @@ jobs:
         run: cp data/production.db /app/data/production.db
 
       - name: Generate feed
-        run: php bin/console rfc:generate-feed -o feed.xml
+        run: php bin/console rfc:generate-feed -o feed.xml --limit=50
         working-directory: /app
 
       - name: Upload feed
