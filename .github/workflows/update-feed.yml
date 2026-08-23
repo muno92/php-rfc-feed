@@ -81,50 +81,7 @@ jobs:
           git commit -m "Update RFC database with latest changes"
           git push
 
-  generate-rfc-feed:
-    runs-on: ubuntu-latest
+  generate-and-deploy-feed:
     needs: update-db
-    container:
-      image: ghcr.io/${{ github.repository }}:master
-      credentials:
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          # When the database is updated, the default ref is older than the latest commit.
-          ref: master
-
-      - name: Copy production database
-        run: cp data/production.db /app/data/production.db
-
-      - name: Generate feed
-        run: php bin/console rfc:generate-feed -o feed.xml
-        working-directory: /app
-
-      - name: Upload feed
-        uses: actions/upload-artifact@v4
-        with:
-          name: rfc-feed
-          path: /app/feed.xml
-
-  deploy-feed:
-    runs-on: ubuntu-latest
-    needs: generate-rfc-feed
-
-    steps:
-      - name: Download updated database
-        uses: actions/download-artifact@v4
-        with:
-          name: rfc-feed
-          path: dist/
-
-      - name: Deploy to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
-        with:
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          command: pages deploy dist --project-name=php-rfc-feed
-
+    uses: ./.github/workflows/deploy-feed.yml
+    secrets: inherit
