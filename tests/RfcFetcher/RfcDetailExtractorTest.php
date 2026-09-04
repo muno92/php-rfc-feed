@@ -70,7 +70,7 @@ class RfcDetailExtractorTest extends TestCase
             new RfcDetail(
                 "Move PHP's source code and docs to something that isn't CVS",
                 'Accepted',
-                new \DateTimeImmutable('2025/04/03 13:08'),
+                new \DateTimeImmutable('2009/05/17 13:32'),
                 '0.0.1'
             )
         ];
