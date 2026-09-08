@@ -61,7 +61,7 @@ class RfcDetailExtractorTest extends TestCase
             new RfcDetail(
                 'Property write/set visibility',
                 'Obsolete',
-                new \DateTimeImmutable('2025/04/03 13:08'),
+                new \DateTimeImmutable('2025/02/08 01:53'),
                 '0.4.6'
             )
         ];
