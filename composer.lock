@@ -6380,7 +6380,7 @@
         },
         {
             "name": "symplify/easy-coding-standard",
-            "version": "13.3.0",
+            "version": "13.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ecsphp/ecs.git",
@@ -6421,7 +6421,7 @@
                 "static analysis"
             ],
             "support": {
-                "source": "https://github.com/ecsphp/ecs/tree/13.3.0"
+                "source": "https://github.com/ecsphp/ecs/tree/13.3.1"
             },
             "time": "2026-09-07T06:47:35+00:00"
         },
