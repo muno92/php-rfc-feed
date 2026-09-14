@@ -52,7 +52,7 @@ class RfcDetailExtractorTest extends TestCase
             new RfcDetail(
                 'Change behaviour of array sort functions to return a copy of the sorted array',
                 'Withdrawn',
-                new \DateTimeImmutable('2025/04/03 13:08'),
+                new \DateTimeImmutable('2025/04/01 17:20'),
                 '0.1'
             )
         ];
